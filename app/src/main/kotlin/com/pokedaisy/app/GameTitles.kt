@@ -159,7 +159,7 @@ object GameTitles {
     )
 
     /** DS carts worth hashing (128 MB each, once per file): the DS games above. */
-    private val NDS_CODES = setOf("CPUE", "IPKE", "IPGE")
+    private val NDS_CODES = setOf("CPUE", "IPKE", "IPGE", "IREO")
 
     /** Only these games' ROMs (and Game Boy carts) are worth hashing: every entry above is one of them. */
     private val CODES = setOf("BPRE", "BPGE", "BPEE", "AXVE", "AXPE") + EMERALD_LOCALIZED_CODES +

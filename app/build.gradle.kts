@@ -114,6 +114,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            applicationIdSuffix = ".black2"
+            versionNameSuffix = "-black2-preview"
+        }
         release {
             isMinifyEnabled = false
             if (keystoreProps != null) signingConfig = signingConfigs.getByName("release")

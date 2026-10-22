@@ -58,6 +58,11 @@ object NdsArt {
         val rev = header[0x1E].toInt() and 0xFF
         val platinum = code == "CPUE" && rev == 1
         val heartGold = (code == "IPKE" || code == "IPGE") && rev == 0
+        if (code == "IREO" && rev == 0) {
+            Gen5RomTables.load(f, header)
+            Gen5Art.extract(f, header, dir)
+            return true
+        }
         if (!platinum && !heartGold) return false
         val marker = File(dir, if (platinum) "nds/platinum-built" else "nds/heartgold-built")
         val stamp = "v$VERSION $code $rev"
@@ -131,7 +136,7 @@ object NdsArt {
     }
 
     /** An NCGR's tile bytes (its RAHC block's data). */
-    private fun ncgrData(ncgr: ByteArray?): ByteArray? {
+    internal fun ncgrData(ncgr: ByteArray?): ByteArray? {
         ncgr ?: return null
         val o = indexOf(ncgr, "RAHC") ?: return null
         val size = u32(ncgr, o + 0x18).toInt()
@@ -427,7 +432,7 @@ object NdsArt {
     }
 
     /** A file in the cart's file system by its path: the FNT walked a directory at a time, the FAT for its bytes. */
-    private fun file(f: RandomAccessFile, header: ByteArray, path: String): ByteArray? {
+    internal fun file(f: RandomAccessFile, header: ByteArray, path: String): ByteArray? {
         val fnt = f.read(u32(header, 0x40), u32(header, 0x44).toInt())
         val fatOff = u32(header, 0x48)
         var id = 0xF000
@@ -463,7 +468,7 @@ object NdsArt {
     }
 
     /** A NARC's members: BTAF (start / end offsets), BTNF, then GMIF holding the bytes. */
-    private class Narc(val d: ByteArray) {
+    internal class Narc(val d: ByteArray) {
         private val count: Int
         private val fat: Int
         private val base: Int
@@ -487,7 +492,7 @@ object NdsArt {
     }
 
     /** An NCLR's palettes: TTLP's 16-colour BGR555 rows, as ARGB. */
-    private fun palettes(nclr: ByteArray?): List<IntArray> {
+    internal fun palettes(nclr: ByteArray?): List<IntArray> {
         nclr ?: return emptyList()
         val o = indexOf(nclr, "TTLP") ?: return emptyList()
         val data = o + 0x18
@@ -505,7 +510,7 @@ object NdsArt {
 
     /** An NCGR icon: 4bpp 8x8 tiles, 4 across, 32 wide and [height] tall (a party icon's two frames: 64; an item: 32);
      * colour 0 clear. */
-    private fun icon(ncgr: ByteArray?, pal: IntArray, height: Int = 64): RomArt.Image? {
+    internal fun icon(ncgr: ByteArray?, pal: IntArray, height: Int = 64): RomArt.Image? {
         ncgr ?: return null
         val o = indexOf(ncgr, "RAHC") ?: return null
         val px = o + 0x20

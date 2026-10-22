@@ -133,6 +133,8 @@ To use another button, change the `QUICK MENU` hotkey.
 
 ![TOUCH CONTROLS on a phone held upright: the preview of the screen with the buttons, then the settings](shots/settings-touch-phone.png "TOUCH CONTROLS on a phone")
 
+In a DS game the touch controls have X and Y too: the four face buttons sit in a diamond like on the DS, X at the top, A on the right, B at the bottom and Y on the left. X opens the game's menu and Y uses your registered item. You can move or hide X and Y in `EDIT LAYOUT` like any other button.
+
 - **`SHOW`**: `AUTO` (the default) shows them only when no controller is connected, and hides them as soon as you press a real button. `ALWAYS` keeps them on screen, `NEVER` never shows them. On a phone with nothing plugged in, `AUTO` shows them.
 - **`LAYOUT`**: where the buttons sit.
   - `SIDES` (the default): everything in the black bars beside the game when you hold the phone sideways, so nothing covers the picture. When the bars are too narrow for the buttons (an older 16:9 phone, or a phone held upright) it works like `CLASSIC`.

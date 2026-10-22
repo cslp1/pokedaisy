@@ -13,9 +13,16 @@ val appSrc = fileTree(app) {
         .forEach { include(it) }
 }
 sourceSets["main"].kotlin.srcDir("shims")
+tasks.named<KotlinCompile>("compileKotlin") { source(appSrc) }
 tasks.withType<KotlinCompile>().configureEach {
-    source(appSrc)
     kotlinOptions.jvmTarget = "17"
 }
 java { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
 dependencies { api(compose.desktop.currentOs) }
+
+// Fast JVM checks for the Black 2 reader, without an Android SDK or a supplied ROM.
+sourceSets["test"].kotlin.apply {
+    srcDir(rootDir.resolve("../app/src/test/kotlin"))
+    include("**/Gen5DecodeTest.kt")
+}
+dependencies { testImplementation("junit:junit:4.13.2") }

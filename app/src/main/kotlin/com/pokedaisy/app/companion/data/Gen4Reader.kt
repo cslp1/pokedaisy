@@ -295,7 +295,7 @@ val GEN4_HEARTGOLD_US = gen4HeartGoldFamily(saveDataPtr = HEARTGOLD_SAVE_DATA_PT
 val GEN4_SOULSILVER_US = gen4HeartGoldFamily(saveDataPtr = HEARTGOLD_SAVE_DATA_PTR)
 
 /** A DS game ([readGen4Telemetry]): two screens, its own look and tables. */
-val GameKind?.isDsGame: Boolean get() = this == GameKind.PLATINUM || isHgss
+val GameKind?.isDsGame: Boolean get() = this == GameKind.PLATINUM || isHgss || this == GameKind.BLACK2
 
 /** The Gen 4 config for [kind], or null. */
 fun gen4ConfigFor(kind: GameKind?): Gen4Config? = when (kind) {
@@ -345,7 +345,12 @@ private fun gen4Crypt(raw: ByteArray, off: Int, len: Int, seed: Long): ByteArray
  * as encrypted dropped the lead every few seconds: the game looks at it that often on the field.) HeartGold / SoulSilver
  * also hold one party Pokémon's blocks in plaintext between frames with the flags clear (slot 1 on both players' saves,
  * on the field), so whichever way the checksum adds up is taken, and likewise the party fields that make sense. */
-fun decodeGen4PartyMon(raw: ByteArray, off: Int): Mon? {
+fun decodeGen4PartyMon(raw: ByteArray, off: Int): Mon? = decodeDsPartyMon(raw, off, gen5 = false)
+
+/** Shared encrypted box format; Gen 5 has a shorter party tail and an explicit nature byte. */
+internal fun decodeDsPartyMon(raw: ByteArray, off: Int, gen5: Boolean): Mon? {
+    val monSize = if (gen5) 0xDC else GEN4_MON_SIZE
+    if (off < 0 || off > raw.size - monSize) return null
     val personality = u32(raw, off)
     val decrypted = u16(raw, off + 4)
     val checksum = u16(raw, off + 6)
@@ -363,14 +368,15 @@ fun decodeGen4PartyMon(raw: ByteArray, off: Int): Mon? {
     val a = block('A')
     val b = block('B')
     val species = u16(blocks, a)
-    if (species == 0 || species > 493) return null
+    if (species == 0 || species > (if (gen5) 649 else 493)) return null
     val ivWord = u32(blocks, b + 0x10)
     val flags = u8(blocks, b + 0x18)
+    if (gen5 && (u8(blocks, b + 0x19) > 24 || (0 until 4).any { u16(blocks, b + it * 2) > 559 })) return null
     // The party fields carry no checksum: a level or HP no Pokémon has is a read gone wrong.
     fun sane(p: ByteArray) = u8(p, 4) in 1..100 && u16(p, 8) in 1..999 && u16(p, 6) <= u16(p, 8)
-    val plainParty = raw.copyOfRange(off + GEN4_BOX_SIZE, off + GEN4_MON_SIZE)
+    val plainParty = raw.copyOfRange(off + GEN4_BOX_SIZE, off + monSize)
     val party = (if (decrypted and 1 != 0) plainParty.takeIf(::sane)
-        else gen4Crypt(raw, off + GEN4_BOX_SIZE, GEN4_MON_SIZE - GEN4_BOX_SIZE, personality).takeIf(::sane)
+        else gen4Crypt(raw, off + GEN4_BOX_SIZE, monSize - GEN4_BOX_SIZE, personality).takeIf(::sane)
             ?: plainParty.takeIf(::sane)) ?: return null
     return Mon(
         species = species,
@@ -389,6 +395,12 @@ fun decodeGen4PartyMon(raw: ByteArray, off: Int): Mon? {
         personality = personality,
         isEgg = (ivWord ushr 30) and 1L != 0L,
         heldItem = u16(blocks, a + 2),
+        stats = if (gen5) MonStats(
+            ivs = List(6) { ((ivWord ushr (it * 5)) and 31).toInt() },
+            evs = List(6) { u8(blocks, a + 0x10 + it) },
+            nature = u8(blocks, b + 0x19),
+            stats = List(6) { u16(party, 8 + it * 2) },
+        ) else null,
     )
 }
 

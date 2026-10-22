@@ -298,6 +298,7 @@ shows a "not supported" notice).
 | Platinum (DS)                  | USA rev 1                  |  ✅   | ✅  |   ◐    | ✅  |   ✅    |  ✅   |
 | HeartGold (DS)                 | USA                        |  ✅   | ✅  |   —    | ✅  |   ✅    |  ✅   |
 | SoulSilver (DS)                | USA                        |  ✅   | ✅  |   —    | ✅  |   ✅    |  ✅   |
+| Black 2 (DS, preview)          | USA/Europe, IREO rev 0     |  ✅   | ✅  |   ◐    | ✅  |   ✅    |  ◐    |
 | Unbound                        | 2.1.1.1                    |  ✅   | ✅  |   ◐    | ✅  |   ✅    |  ✅   |
 | Unbound                        | 2.1.1.1 French             |  ✅   | ✅  |   ◐    | ✅  |   ✅    |  ✅   |
 | Radical Red                    | 4.1                        |  ✅   | ✅  |   ◐    | ✅  |   ✅    |  ✅   |
@@ -345,7 +346,8 @@ its 289 in National order; its faithful builds keep the original games' types an
 Platinum, HeartGold and SoulSilver are the DS games the companion reads, in the USA release listed (Platinum's
 revision 1); their pictures, Pokédex pages and maps come from your cart. Platinum's battles show in the BATTLE tab,
 HeartGold's and SoulSilver's not yet, and on the DS the battle buttons don't press the game's menus yet. On a
-one-screen device a DS game shows its top screen; the touch screen needs a second screen for now.
+one-screen device held upright, the DS touch screen appears below the top screen. Tap COMPANION / GAME SCREEN to switch the lower area. Landscape on one screen still shows only the top screen.
+Black 2 (the English USA / Europe cart, IREO revision 0) is a preview: party, bag (pockets, quantities, descriptions), the BATTLE tab (both sides live, the foe's team, matchup advice), the Unova Town Map with where you are, the Pokédex (seen / caught, pages, evolutions, moves) and the guide (wild Pokémon for the season, the gyms, the Elite Four and the Champion), all read from your cart and save. Its battle buttons, FLY, field items and the field reads aren't there yet; its guide has no area lists. DS games get X and Y on the touch controls.
 Map ◐ means place names
 only, without the map picture. Guide ◐ means the live pages only (the wild encounters here and the next
 boss), without the area lists. Battle ◐ means the battle panes work but haven't

@@ -48,7 +48,9 @@ enum class TouchButton(val label: String, val gba: Int, val extra: Boolean = fal
     TURBO_A(tk("TURBO A"), 1, extra = true),
     TURBO_B(tk("TURBO B"), 2, extra = true),
     SAVE_STATE(tk("SAVE STATE"), 0, extra = true),
-    LOAD_STATE(tk("LOAD STATE"), 0, extra = true);
+    LOAD_STATE(tk("LOAD STATE"), 0, extra = true),
+    /** A DS game's X and Y (melonDS's key bits 10 / 11): shown only while one runs. */
+    X("X", 1 shl 10), Y("Y", 1 shl 11);
 
     /** The short word drawn on the button. */
     val face: String get() = when (this) {
@@ -157,10 +159,11 @@ data class TouchControlsStyle(
     val hasCustom get() = !portrait.isEmpty || !landscape.isEmpty
 
     /** What a control-by-control layout is built from: the GBA buttons and the extras switched on. */
-    fun shown(gameBoy: Boolean): List<TouchButton> = TouchButton.entries.filter { b ->
+    fun shown(gameBoy: Boolean, ds: Boolean = false): List<TouchButton> = TouchButton.entries.filter { b ->
         when {
             b.extra -> b in extras
             gameBoy && (b == TouchButton.L || b == TouchButton.R) -> false
+            !ds && (b == TouchButton.X || b == TouchButton.Y) -> false
             else -> true
         }
     }
@@ -183,4 +186,6 @@ data class TouchStage(
     val companion: Rect? = null,
     val gameAspect: Float = 1.5f,
     val gameBoy: Boolean = false,
+    /** A DS game: X and Y join A and B ([TouchButton.X]). */
+    val ds: Boolean = false,
 )

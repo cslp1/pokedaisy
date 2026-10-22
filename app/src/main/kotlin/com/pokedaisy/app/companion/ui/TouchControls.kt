@@ -143,12 +143,14 @@ fun TouchControls(
     gameAspect: Float = 1.5f,
     gameBoy: Boolean = false,
     ffOn: Boolean = false,
+    /** A DS game: X and Y join A and B. */
+    ds: Boolean = false,
     onPlaced: (TouchGeometry.Placed) -> Unit = {},
 ) {
     val density = LocalDensity.current
     var measured by remember { mutableStateOf(IntSize.Zero) }
-    val placed = remember(style, portrait, measured, gameAspect, gameBoy, density.density) {
-        TouchGeometry.place(style, measured.width.toFloat(), measured.height.toFloat(), density.density, portrait, gameAspect, gameBoy)
+    val placed = remember(style, portrait, measured, gameAspect, gameBoy, ds, density.density) {
+        TouchGeometry.place(style, measured.width.toFloat(), measured.height.toFloat(), density.density, portrait, gameAspect, gameBoy, ds = ds)
     }
     LaunchedEffect(placed) { onPlaced(placed) }
     val pressed = remember { Pressed() }
@@ -222,7 +224,7 @@ fun TouchControls(
     ) {
         // The first frame draws before onSizeChanged's size has come round: place from the canvas's own.
         val p = if (placed.w == size.width && placed.h == size.height) placed
-        else TouchGeometry.place(style, size.width, size.height, density.density, portrait, gameAspect, gameBoy)
+        else TouchGeometry.place(style, size.width, size.height, density.density, portrait, gameAspect, gameBoy, ds = ds)
         drawTouchControls(p, pressed, ffOn, measurer, font)
     }
 }
@@ -358,7 +360,7 @@ fun TouchControlsPreview(stage: TouchStage, style: TouchControlsStyle, shot: Ima
     val measurer = rememberTextMeasurer(24)
     val font = pixelFontFamily()
     val placed = remember(stage, style) {
-        TouchGeometry.place(style, stage.area.width, stage.area.height, stage.dp, stage.portrait, stage.gameAspect, stage.gameBoy)
+        TouchGeometry.place(style, stage.area.width, stage.area.height, stage.dp, stage.portrait, stage.gameAspect, stage.gameBoy, ds = stage.ds)
     }
     Canvas(modifier) {
         val px = gbaPixelPx()
@@ -460,7 +462,7 @@ fun TouchLayoutEditor(
     var dragging by remember { mutableStateOf(false) }
     val editStyle = style.withLayout(portrait, layout)
     val placed = remember(editStyle, stage) {
-        TouchGeometry.place(editStyle, area.width, area.height, stage.dp, portrait, stage.gameAspect, stage.gameBoy)
+        TouchGeometry.place(editStyle, area.width, area.height, stage.dp, portrait, stage.gameAspect, stage.gameBoy, ds = stage.ds)
     }
     val currentPlaced by rememberUpdatedState(placed)
     val hidden = layout.places.filterValues { it.hidden }.keys.toList()

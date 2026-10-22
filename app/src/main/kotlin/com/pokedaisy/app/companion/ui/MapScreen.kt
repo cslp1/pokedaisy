@@ -214,6 +214,7 @@ fun MapScreen(
                         style = style,
                         head = regionMapBitmap(
                             if (snapshot.game.isHgss) (if (snapshot.playerGender == 1) com.pokedaisy.app.companion.data.PokegearMap.HEAD_F else com.pokedaisy.app.companion.data.PokegearMap.HEAD_M)
+                            else if (snapshot.game == com.pokedaisy.app.companion.data.GameKind.BLACK2) (if (snapshot.playerGender == 1) com.pokedaisy.app.companion.data.Gen5Art.HEAD_F else com.pokedaisy.app.companion.data.Gen5Art.HEAD_M)
                             else if (snapshot.game.isDsGame) (if (snapshot.playerGender == 1) NdsArt.PLATINUM_HEAD_F else NdsArt.PLATINUM_HEAD_M)
                             else style.headAsset(snapshot.playerGender, snapshot.game),
                         ),

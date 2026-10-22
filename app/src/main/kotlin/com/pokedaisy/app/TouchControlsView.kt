@@ -45,6 +45,9 @@ class TouchControlsView(context: Context) : FrameLayout(context) {
     /** The L / R buttons: off for a Game Boy / Color game, which has none. */
     var shoulders by mutableStateOf(true)
 
+    /** A DS game runs: its X and Y join A and B. */
+    var dsButtons by mutableStateOf(false)
+
     private var placed: TouchGeometry.Placed? = null
 
     /** The FIELD HUD's room to keep clear while this shows (px): down to the top row's bottom (L / R, extras), and up
@@ -76,7 +79,7 @@ class TouchControlsView(context: Context) : FrameLayout(context) {
                         onAction = { b, down -> onAction?.invoke(b, down) },
                         onPress = { if (style.vibration) performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) },
                     ),
-                    gameAspect = gameAspect, gameBoy = !shoulders, ffOn = ffOn,
+                    gameAspect = gameAspect, gameBoy = !shoulders, ffOn = ffOn, ds = dsButtons,
                     modifier = androidx.compose.ui.Modifier.fillMaxSize(),
                     onPlaced = { placed = it; onPlaced?.invoke() },
                 )

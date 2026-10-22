@@ -61,7 +61,9 @@ The companion is still there:
 
 `SWAP SCREENS` trades a DS game's two screens too: the top screen goes on your bottom screen, and the touch screen, with its `COMPANION` button, on the top one. The touch screen stays up whatever `CLOSE COMPANION` says. `REWIND` isn't available in DS games.
 
-On a handheld or phone with one screen, a DS game shows its top screen only, for now: the touch screen needs a second screen. The game plays with your buttons, but anything that has to be tapped on the touch screen can't be done there yet.
+On a phone or tablet held upright, the DS top screen sits above its touch screen. Tap the lower screen to use the stylus. Tap `COMPANION` to show your party in that area, or `GAME SCREEN` to return to the touch screen. Drag the grip to resize the lower area. With the companion open, `BACK` closes its current page, then returns to the touch screen.
+
+Held sideways on one screen, a DS game still shows only its top screen. Turn the device upright when you need the touch screen. On a tablet such as the Redmi Pad 2 held upright, the same layout applies: the top screen across the top, the touch screen or the companion below it.
 
 ## Single-screen handhelds
 

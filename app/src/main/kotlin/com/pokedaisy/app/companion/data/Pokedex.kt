@@ -1607,8 +1607,10 @@ object PokedexSource {
     private val abilityNames = ConcurrentHashMap<Pair<PokedexTables, Int>, String>()
 
     /** Ability [id]'s name in the running game (battle INFO's FOE DETAILS); null = no table / unreadable. */
-    fun cachedAbilityName(t: PokedexTables, id: Int): String? = abilityNames[t to id]
+    fun cachedAbilityName(t: PokedexTables, id: Int): String? = if (t === POKEDEX_BLACK2) abilityName(t, id) else abilityNames[t to id]
     fun abilityName(t: PokedexTables, id: Int): String? {
+        // Black 2: the cart's text bank, read at launch (Gen5RomTables).
+        if (t === POKEDEX_BLACK2) return Gen5RomTables.current.abilities.getOrNull(id)?.takeIf { id > 0 && it.isNotBlank() }
         if (id <= 0 || t.abilityNames == 0L) return null
         abilityNames[t to id]?.let { return it }
         // The ROM's own casing, as the DEX shows it.

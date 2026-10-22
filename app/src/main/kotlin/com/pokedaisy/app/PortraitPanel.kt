@@ -39,6 +39,7 @@ class PortraitPanel(
     private val prefs: Prefs,
     private val back: CompanionBack,
     private val clickSound: () -> Unit,
+    private val dsGame: () -> Boolean = { false },
     private val companion: @Composable () -> Unit,
 ) {
     private val context: Context get() = root.context
@@ -91,11 +92,14 @@ class PortraitPanel(
             ratio = prefs.portraitCompanionRatio
             underGame = prefs.portraitCompanionUnderGame
             val at = root.indexOfChild(touchControls) + 1
-            panel = CompanionColors.track(ComposeView(context)).apply {
+            val companionView = CompanionColors.track(ComposeView(context)).apply {
                 setContent {
                     CompositionLocalProvider(LocalCompanionTopInset provides topInset.intValue) { SidePanelCompanion(content = companion) }
                 }
-            }.also { root.addView(it, at, FrameLayout.LayoutParams(-1, 0, Gravity.TOP)) }
+            }
+            panel = (if (dsGame()) NdsBottomHost(context, { companionView }, prefs.dsBottomCompanion) {
+                prefs.dsBottomCompanion = it
+            } else companionView).also { root.addView(it, at, FrameLayout.LayoutParams(-1, 0, Gravity.TOP)) }
             gripView = DragFrame(context, vertical = true, ::onDragStart, ::onDrag, ::onDragEnd).apply {
                 addView(CompanionColors.track(ComposeView(context)).apply {
                     setContent {
@@ -124,6 +128,11 @@ class PortraitPanel(
     /** Picks up SETTINGS' COMPANION (along the bottom / under the game) and the size from [prefs]. */
     fun refresh() {
         if (!enabled) return
+        if ((panel is NdsBottomHost) != dsGame()) {
+            setEnabled(false)
+            setEnabled(true)
+            return
+        }
         ratio = prefs.portraitCompanionRatio
         underGame = prefs.portraitCompanionUnderGame
         apply()
@@ -139,7 +148,10 @@ class PortraitPanel(
     /** A BACK tap; false = not ours (held sideways, or a second screen has the companion). */
     fun onBack(): Boolean {
         if (!enabled) return false
-        back.back()
+        val ds = panel as? NdsBottomHost
+        if (ds == null || ds.showingCompanion) {
+            if (!back.back()) ds?.show(false)
+        }
         return true
     }
 

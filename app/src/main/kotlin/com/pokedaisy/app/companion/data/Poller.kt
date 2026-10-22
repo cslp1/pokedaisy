@@ -308,6 +308,7 @@ class TelemetrySampler {
                 GameKind.YELLOW, GameKind.RED, GameKind.BLUE -> readGen1Telemetry(reader, gen1Cfg ?: GEN1_YELLOW)
                 GameKind.CRYSTAL, GameKind.CRYSTAL_CLEAR, GameKind.PRISM, GameKind.GOLD, GameKind.SILVER, GameKind.POLISHED_CRYSTAL ->
                     readGen2Telemetry(reader, gen2Cfg ?: GEN2_CRYSTAL)
+                GameKind.BLACK2 -> readGen5Telemetry(reader)
                 GameKind.PLATINUM, GameKind.HEARTGOLD, GameKind.SOULSILVER -> readGen4Telemetry(reader, gen4Cfg ?: GEN4_PLATINUM_US)
                 else -> {
                     unsupportedHackLabel?.let { return SnapshotView(connected = false, error = it, unsupported = true) }
@@ -607,6 +608,7 @@ class TelemetrySampler {
         val rev = runCatching { reader0x1E() }.getOrDefault(-1)
         when {
             ndsSupported(code, rev) -> when (code) {
+                "IREO" -> { kind = GameKind.BLACK2 }
                 "IPKE" -> { kind = GameKind.HEARTGOLD; gen4Cfg = GEN4_HEARTGOLD_US }
                 "IPGE" -> { kind = GameKind.SOULSILVER; gen4Cfg = GEN4_SOULSILVER_US }
                 else -> { kind = GameKind.PLATINUM; gen4Cfg = GEN4_PLATINUM_US }
@@ -1011,7 +1013,7 @@ class TelemetrySampler {
 
         /** The DS carts the companion reads, by their header's game code (0x0C) and revision (0x1E): Platinum USA rev 1,
          * HeartGold / SoulSilver USA (rev 0, their only one). The website's ROM check gets them through compat.json. */
-        val NDS_GAMES = mapOf("CPUE" to 1, "IPKE" to 0, "IPGE" to 0)
+        val NDS_GAMES = mapOf("CPUE" to 1, "IPKE" to 0, "IPGE" to 0, "IREO" to 0)
 
         /** [detectDs] and the library's [com.pokedaisy.app.CompanionSupport] both ask this. */
         fun ndsSupported(code: String?, revision: Int?): Boolean =
