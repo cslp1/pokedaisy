@@ -273,6 +273,8 @@ ROM hacks are excluded. This list describes companion support, not emulator comp
 
 ✅ Works · ◐ Partial · — Not implemented
 
+Planned entries track the remaining official Gen 1–5 games. Their companion support has not been implemented or verified yet.
+
 | Game                           | Version                    | Party | Bag | Battle | Map |   Dex   | Guide |
 | ------------------------------ | -------------------------- | :---: | :-: | :----: | :-: | :-----: | :---: |
 | Red / Blue (GB)                | USA/Europe                 |  ✅   | ✅  |   ◐    | ✅  |   ✅    |   —   |
@@ -293,7 +295,12 @@ ROM hacks are excluded. This list describes companion support, not emulator comp
 | Platinum (DS)                  | USA rev 1                  |  ✅   | ✅  |   ◐    | ✅  |   ✅    |  ✅   |
 | HeartGold (DS)                 | USA                        |  ✅   | ✅  |   —    | ✅  |   ✅    |  ✅   |
 | SoulSilver (DS)                | USA                        |  ✅   | ✅  |   —    | ✅  |   ✅    |  ✅   |
+| Diamond (DS, planned)          | Pending verification       |   —   |  —  |   —    |  —  |    —    |   —   |
+| Pearl (DS, planned)            | Pending verification       |   —   |  —  |   —    |  —  |    —    |   —   |
+| Black (DS, planned)            | Pending verification       |   —   |  —  |   —    |  —  |    —    |   —   |
+| White (DS, planned)            | Pending verification       |   —   |  —  |   —    |  —  |    —    |   —   |
 | Black 2 (DS)                   | USA/Europe (IREO rev 0)    |  ✅   | ✅  |   ◐    | ✅  |   ✅    |  ✅   |
+| White 2 (DS, planned)          | Pending verification       |   —   |  —  |   —    |  —  |    —    |   —   |
 
 <details>
 <summary><strong>Notes on the table</strong></summary>
