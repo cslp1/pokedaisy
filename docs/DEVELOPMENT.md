@@ -1947,12 +1947,17 @@ bundled. The map's player marker is our own drawing.
 
 The guide (`GuideBlack2.kt`) reads HERE from the cart for the season (the DS clock's month: January, May, September
 spring) and NEXT BOSS from the trainers' teams (leaders by badge, the League by trainer flag or the Champion's).
+HERE's ITEMS / PEOPLE and the generated WHERE IS come from `GuideAreasBlack2Gen.kt`, written by
+`python3 scripts/gen_black2_guide.py <pokebw2 checkout> <cart>` from pokebw2's dumped zones, events, scripts and trades
+(item balls: NPC scripts 7000 + n, done = the NPC's flag; hidden items: BG scripts 8000 + n with their 0xB04+ flag; gifts:
+`WorkSet 0x8000, item` + `RTCallGlobal 2801/2802/2805/2806/2807`; gift Pokémon `PokePartyAddEx`; trades `FieldTradeStart`),
+keyed by Town Map place with `Gen5RomTables.withTownMap`'s rule. STUCK? is hand-written (`GuideBlack2.kt`).
 
 DS games get X and Y on the touch controls (`TouchButton.X` / `Y`, melonDS key bits 10 / 11), in the DS's diamond
 (`TouchGeometry.diamond`); `TouchGeometryTest` covers every preset with them, a tablet's size included.
 
 Not done for Black 2: battle buttons, FLY, field items / REPEL, the field reads (EXPAND, scene speeds, wild encounters
-OFF), trainer card, the guide's area lists and hand-written WHERE IS / STUCK? pages.
+OFF) and the trainer card.
 
 Tests (`Gen5DecodeTest`, JVM, no Android SDK):
 
