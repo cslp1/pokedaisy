@@ -8,7 +8,6 @@ change to any of the places listed under "Where it's decided" updates its rows h
 
 | Game | Version | EXPAND | Battle buttons | One-press picks | POKéMON switch | Field items | FLY | Trainer card | Field reads | Bike / surf | Wild encounters | PC anywhere | Reusable TMs |
 | ---- | ------- | :----: | :------------: | :-------------: | :------------: | :---------: | :-: | :----------: | :---------: | :---------: | :-------------: | :---------: | :----------: |
-| Black 2 (DS, preview) | IREO rev 0 | — | — | — | — | — | — | — | — | — | — | — | — |
 | Yellow (GB) | USA/Europe | ✅ ¹² | ✅ | ✅ ¹ | ✅ ⁸ | — | ✅ ¹³ | — | n/a | n/a | ✅ ¹³ | ✅ ¹³ | — |
 | Yellow (GB) | DE / FR / IT / ES | n/a | ✅ | ✅ ¹ | ✅ ⁸ | — | ✅ ¹³ | — | n/a | n/a | ✅ ¹³ | ✅ ¹³ | — |
 | Red / Blue (GB) | USA/Europe | n/a | ✅ | ✅ ¹ | ✅ ⁸ | — | ✅ ¹³ | — | n/a | n/a | ✅ ¹³ | ✅ ¹³ | — |
@@ -32,6 +31,7 @@ change to any of the places listed under "Where it's decided" updates its rows h
 | Platinum (DS) | USA rev 1 | ✅ ¹⁴ | — | — | — | — | ✅ ¹⁴ | — | ✅ ¹⁴ | ✅ ¹⁴ | ✅ ¹⁴ | ✅ ¹⁴ | — |
 | HeartGold (DS) | USA | ✅ ¹⁴ | — | — | — | — | ✅ ¹⁴ | — | ✅ ¹⁴ | ✅ ¹⁴ | ✅ ¹⁴ | ✅ ¹⁴ | — |
 | SoulSilver (DS) | USA | ✅ ¹⁴ | — | — | — | — | ✅ ¹⁴ | — | ✅ ¹⁴ | ✅ ¹⁴ | ✅ ¹⁴ | ✅ ¹⁴ | — |
+| Black 2 (DS) | USA/Europe (IREO rev 0) | — | — | — | — | — | — | — | — | — | — | — | — |
 | Amethyst | 1.3.0, 1.4.1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — | ✅ | ✅ | ✅ | ✅ | — |
 | Ash Gray | 4.5.3, Fork Bug Fix 1.0 | ✅ | ✅ | ✅ | ✅ | ✅ | ◐ ⁹ | — | ◐ ⁹ | ◐ ⁹ | ◐ ⁹ | ◐ ⁹ | — |
 | Celia's Stupid Romhack | 1.1.4 | ✅ | ✅ | ✅ | ✅ | — | — | — | ✅ | ✅ | ✅ | — | ✅ ¹⁵ |
