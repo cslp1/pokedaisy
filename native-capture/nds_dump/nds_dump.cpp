@@ -393,6 +393,10 @@ int main(int argc, char** argv)
             saveState(a);
         } else if (!strcmp(cmd, "loadstate")) {
             loadState(a);
+        } else if (!strcmp(cmd, "pc")) {
+            // pc: both CPUs' program counters and LR (where a stuck game is)
+            printf("pc arm9 %08X lr %08X arm7 %08X lr %08X\n", nds->ARM9.R[15], nds->ARM9.R[14], nds->ARM7.R[15], nds->ARM7.R[14]);
+            fflush(stdout);
         } else if (!strcmp(cmd, "savefile")) {
             writeFile(a, nds->GetNDSSave(), nds->GetNDSSaveLength());
         } else if (!strcmp(cmd, "peek8") || !strcmp(cmd, "peek16") || !strcmp(cmd, "peek32")) {

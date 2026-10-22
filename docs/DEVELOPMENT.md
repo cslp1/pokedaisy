@@ -1909,3 +1909,58 @@ pushing a different file (only one at a time for now). SRAM persists to
 | `scripts/capture_fixture.sh`, `scripts/roms.conf`       | Captures a live EWRAM+IWRAM memory fixture for one ROM off the device.                                                                                             |
 | `app/src/test/resources/fixtures/<key>/`                | Captured `{ewram,iwram}.bin` + `README.txt` per ROM — replayed by the JVM decode tests, not committed ROMs/saves themselves.                                       |
 | `app/src/test/kotlin/.../companion/data/*DecodeTest.kt` | One regression test per supported ROM, decoding its fixture and asserting the known-real values.                                                                   |
+
+
+## Black 2 (English, IREO rev 0)
+
+`GameKind.BLACK2`, read only (no game code is called, no memory written). Formats and offsets come from
+fuddlesworth/pokebw2 (`include/save/*.h`, `include/battle/btl_main.h`, `btl_pokeparam.h`, `tools/data/*.py`) and were
+checked on headless captures (`native-capture/nds_dump`: the field after the starter, and the rival's battle at the
+Aspertia lookout before and after a turn). The ROM must be Black 2 USA/Europe, game code `IREO`, revision 0.
+
+**RAM** (`Gen5Reader.kt`):
+
+| What | Where |
+| --- | --- |
+| Save buffer | `*(*(0x0209A338) + 0x10) + 0x34` (SaveControl -> SaveData -> buffer; `0x022055E4` in practice) |
+| Bag | buffer + `0x18400`: items 310, key items 83, TMs/HMs 109, medicine 48, berries 64 (`{u16 item, u16 count}`) |
+| Party | buffer + `0x18E00`: `{u32 capacity, u32 count, 6 x 0xDC}` |
+| Trainer | buffer + `0x19400` (PKHeX MyStatus5: gender at `0x21`) |
+| Event work | buffer + `0x1FF00`: 431 vars from `0x4000`, then the flags; trainer flags `0x5F0 + id` |
+| Money / badges | buffer + `0x21100`: `u32 cash`, `u32 badges` (bit n = badge n, CHEREN 0 .. MARLON 7) |
+| Pokédex | buffer + `0x21400`: magic `0xBEEFCAFE`, flags word (bit 0 national), caught, then seen x4 (`0x54` each) |
+| Live position | `*(*(0x021410F4) + 0x1C) + 0x114`: `{u16 zone, u16, fx32 x, y, z}` |
+| Battle | `*(0x021DD87C)` (battle overlay 167's .bss) = BtlMainModule, valid while `*(mm + 0xC8) == mm`; `setup = *mm` (`battleType`, `battleStyle`); pokeCons[0] at `mm + 0xC8`, BattleParty `{BattleMon *mons[6]; u8 count}` at `+4 + client * 0x1C` |
+| BattleMon | `0x224` bytes: species `0x0C`, max HP `0x0E`, HP `0x10`, item `0x12`, level `0x18`, conditions `0x1C`, stats `0xEE..0xF6`, types `0xF8/0xF9`, stages `0xFC`, moves `0x104` (14 bytes each: id, PP, max PP), ability `0x13C`, source PartyPkm `0x00` |
+
+Gen 5 types after Steel are shifted up by one (`Gen5RomTables.type`) for the companion's chart with ???.
+
+**Cart** (`Gen5RomTables.kt`, at launch; `Gen5Art.kt`, once per cart build into rom-art): text `/a/0/0/2` (banks 63 item
+descriptions, 64 items, 90 species, 109 places, 374 abilities, 403 moves, 442 dex entries, 464 categories); personal
+`/a/0/1/6` (0x4C a species; the Unova numbers in its last member), learnsets `/a/0/1/8`, evolutions `/a/0/1/9`, moves
+`/a/0/2/1`, items `/a/0/2/4` (field pocket in bits 7-10 of the u16 at 8), zone headers `/a/0/1/2` (0x30 each),
+encounters `/a/1/2/7` (0xE8, or four seasons), trainers `/a/0/9/1` + `/a/0/9/2`, Town Map places `/a/0/8/5` (27 u16s
+each) and graphics `/a/0/8/4` (8bpp tiles 7 under maps 17 and 16, cropped 256 x 168), party icons `/a/0/0/7` (the egg's
+is group 683), item icons `/a/0/2/5`, front pictures `/a/0/0/4` (LZ11, 96 x 96 in four OBJs). `Gen5Static.kt` holds the
+numbers the ARM9 keeps: the machines' moves, the icon palettes and pml_item.c's item icon table. Nothing of the game is
+bundled. The map's player marker is our own drawing.
+
+The guide (`GuideBlack2.kt`) reads HERE from the cart for the season (the DS clock's month: January, May, September
+spring) and NEXT BOSS from the trainers' teams (leaders by badge, the League by trainer flag or the Champion's).
+
+DS games get X and Y on the touch controls (`TouchButton.X` / `Y`, melonDS key bits 10 / 11), in the DS's diamond
+(`TouchGeometry.diamond`); `TouchGeometryTest` covers every preset with them, a tablet's size included.
+
+Not done for Black 2: battle buttons, FLY, field items / REPEL, the field reads (EXPAND, scene speeds, wild encounters
+OFF), trainer card, the guide's area lists and hand-written WHERE IS / STUCK? pages.
+
+Tests (`Gen5DecodeTest`, JVM, no Android SDK):
+
+```sh
+./gradlew -p ui-preview :data:test
+# The player's cart and headless captures, neither ever committed:
+BLACK2_ROM=/path/to/cart.nds BLACK2_CAPTURES=/path/to/captures ./gradlew -p ui-preview :data:cleanTest :data:test
+```
+
+`BLACK2_CAPTURES` holds `cap_starter/`, `cap_b2/`, `cap_b3/` (nds_dump `dump` directories). Debug APKs use
+`com.pokedaisy.app.black2`, labelled PokeDaisy Black 2 Preview, beside the original app.

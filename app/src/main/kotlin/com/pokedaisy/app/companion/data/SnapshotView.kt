@@ -311,8 +311,8 @@ fun buildSnapshotView(t: Telemetry): SnapshotView {
             maxHp = m.maxHp,
             status = statusLabel(m.status),
             types = monTypes(type1, type2),
-            // A DS game's eggs keep their species: the egg's own icon is NdsArt's 494.
-            iconAsset = spriteAsset("pokemon", if (isEgg && activeGame.isDsGame) 494 else m.species),
+            // A DS game's eggs keep their species: the egg's own icon is NdsArt's 494 (Black 2's: Gen5Art's 650).
+            iconAsset = spriteAsset("pokemon", if (isEgg && activeGame == GameKind.BLACK2) Gen5Art.EGG else if (isEgg && activeGame.isDsGame) 494 else m.species),
             genderSymbol = m.genderSymbol,
             moves = moves,
             exp = if (isEgg) null else expProgress(m.species, m.level, m.exp),

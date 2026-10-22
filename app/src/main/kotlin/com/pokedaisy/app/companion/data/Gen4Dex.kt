@@ -15,6 +15,9 @@ class Gen4DexTables(
     val fronts: String,
     /** Each machine's move: TM01..TM92, then HM01..HM08 (the games' HM05 differ). */
     val tmMoves: IntArray,
+    val speciesMax: Int = 493,
+    val machineCount: Int = 92,
+    val gen5: Boolean = false,
 )
 
 val GEN4_DEX_PLATINUM = Gen4DexTables(NdsArt.PLATINUM_DEX, NdsArt.PLATINUM_FRONT, tmMovesPlatinum)
@@ -34,6 +37,18 @@ val POKEDEX_HEARTGOLD = PokedexTables(
     entries = 0, frontPics = 0, palettes = 0, speciesInfo = 0, speciesToNational = 0, abilityNames = 0, footprints = 0,
     speciesCount = 494, nationalCount = 493, regionalCount = 256, regionName = "JOHTO",
     gen4 = GEN4_DEX_HEARTGOLD, categorySuffix = "Pokémon",
+)
+
+/** Black 2's pages and pictures ([Gen5Art], from the cart): 649 species, TM01..TM95 then HM01..HM06, Gen 5's
+ * evolution methods. */
+val GEN5_DEX_BLACK2 = Gen4DexTables(Gen5Art.DEX, Gen5Art.FRONT, black2MachineMoves, speciesMax = 649, machineCount = 95, gen5 = true)
+
+/** Black 2's dex: Unova's 300 (their order from the cart's personal data) and the National Dex's 649, in feet and
+ * pounds as the English cart prints its pages. */
+val POKEDEX_BLACK2 = PokedexTables(
+    entries = 0, frontPics = 0, palettes = 0, speciesInfo = 0, speciesToNational = 0, abilityNames = 0, footprints = 0,
+    speciesCount = 650, nationalCount = 649, regionalCount = 300, regionName = "UNOVA",
+    gen4 = GEN5_DEX_BLACK2, categorySuffix = "Pokémon",
 )
 
 /** A dex read from the cart (a Game Boy's bytes, a DS game's files), not a GBA ROM's tables. */
@@ -70,7 +85,7 @@ object Gen4Dex {
     fun machines(t: Gen4DexTables, species: Int): List<TeachMove>? {
         val bits = load(t)?.machines?.get(species) ?: return null
         return t.tmMoves.indices.filter { i -> i / 8 < bits.size && (bits[i / 8].toInt() shr (i % 8)) and 1 != 0 }.map { i ->
-            TeachMove(if (i < 92) "TM%02d".format(i + 1) else "HM%02d".format(i - 91), t.tmMoves[i])
+            TeachMove(if (i < t.machineCount) "TM%02d".format(i + 1) else "HM%02d".format(i - t.machineCount + 1), t.tmMoves[i])
         }
     }
 
@@ -83,7 +98,7 @@ object Gen4Dex {
         val key = f.path to f.lastModified()
         if (pagesFor != key) synchronized(this) {
             if (pagesFor != key) {
-                pages = runCatching { parse(f.readLines()) }.getOrNull()
+                pages = runCatching { parse(f.readLines(), t) }.getOrNull()
                 pagesFor = key
             }
         }
@@ -100,7 +115,7 @@ object Gen4Dex {
     /** NdsArt's lines: species, category, description, height dm, weight hg, the six stats (the page's order), type 1 / 2,
      * catch rate, gender ratio, egg groups 1 / 2, abilities 1 / 2; then (a cart read since v8) the regional number, the
      * evolutions, the level-up moves and the TM / HM bits. */
-    internal fun parse(lines: List<String>): Pages {
+    internal fun parse(lines: List<String>, config: Gen4DexTables? = null): Pages {
         val entries = HashMap<Int, DexEntry>()
         val regional = HashMap<Int, Int>()
         val evolutions = HashMap<Int, List<EvoLink>>()
@@ -121,6 +136,7 @@ object Gen4Dex {
                 type1 = i(11),
                 type2 = i(12),
                 baseStats = (5..10).map(::i),
+                hiddenAbility = c.getOrNull(23)?.takeIf { it.isNotBlank() },
                 abilities = listOf(c[17], c[18]).filter { it.isNotBlank() }.distinct(),
                 catchRate = i(13),
                 genderRatio = i(14),
@@ -129,7 +145,7 @@ object Gen4Dex {
             if (i(19) > 0) regional[i(19)] = n
             c.getOrNull(20)?.takeIf { it.isNotEmpty() }?.split(';')?.mapNotNull { e ->
                 val (m, p, to) = e.split(',').map { it.toIntOrNull() ?: return@mapNotNull null }.takeIf { it.size == 3 } ?: return@mapNotNull null
-                if (to !in 1..493 || to == n) null else EvoLink(n, to, evoReqs(m, p))
+                if (to !in 1..(config?.speciesMax ?: 493) || to == n) null else EvoLink(n, to, if (config?.gen5 == true && m == 7) listOf(EvoReq.Trade, EvoReq.Special) else evoReqs(if (config?.gen5 == true && m >= 8) m - 1 else m, p))
             }?.distinct()?.takeIf { it.isNotEmpty() }?.let { evolutions[n] = it }
             c.getOrNull(21)?.takeIf { it.isNotEmpty() }?.split(',')?.mapNotNull { e ->
                 val (lv, mv) = e.split(':').map { it.toIntOrNull() ?: return@mapNotNull null }.takeIf { it.size == 2 } ?: return@mapNotNull null

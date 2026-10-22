@@ -119,6 +119,7 @@ fun uprightCompanionRow(under: Boolean, expand: Boolean, touchShown: Boolean, se
     val idle = expand && !touchShown
     return SettingRow(
         tk("COMPANION"), portraitPlaceLabel(under), enabled = !idle,
+        labelBadge = NewFeatures.badge(NewFeatures.DS_PORTRAIT),
         subtitle = when {
             idle -> "EXPAND: the game fills the space above it"
             expand -> "EXPAND: UNDER GAME gives the buttons their own space"
@@ -155,7 +156,7 @@ fun TouchControlsPage(
         else {
             val w = stage.h
             val upright = stage.w > stage.h   // the other way round from what's shown
-            val strip = if (expand && underGame && touchShown && upright) TouchGeometry.naturalHeight(style, w, stage.dp, stage.gameBoy) else 0
+            val strip = if (expand && underGame && touchShown && upright) TouchGeometry.naturalHeight(style, w, stage.dp, stage.gameBoy, stage.ds) else 0
             simulateTouchStage(
                 w, stage.w, stage.dp, stage.gameAspect, portraitRatio = portraitRatio, underGame = underGame,
                 gameBoy = stage.gameBoy, expand = expand, padStrip = strip,

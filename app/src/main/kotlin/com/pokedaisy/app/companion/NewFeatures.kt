@@ -10,6 +10,9 @@ import com.pokedaisy.app.companion.i18n.tk
  * from the update. Every new feature gets one (CLAUDE.md): add its id to [ALL] and the badge to its row.
  */
 object NewFeatures {
+    /** Portrait DS touch screen and companion switch on phones and tablets. */
+    const val DS_PORTRAIT = "ds_portrait"
+
     /** SETTINGS > HUD (companion.ui.FieldHud). */
     const val HUD = "hud"
 
@@ -54,7 +57,7 @@ object NewFeatures {
 
     /** Every feature that gets the tag. */
     val ALL = listOf(
-        HUD, BATTLE_BUTTONS, GAME_HOTKEYS, COMPANION_WINDOW, HUD_PC, QUICK_MENU, HUD_REPEL, SINGLE_SCREEN, MORE_TAB, TOUCH_CONTROLS,
+        DS_PORTRAIT, HUD, BATTLE_BUTTONS, GAME_HOTKEYS, COMPANION_WINDOW, HUD_PC, QUICK_MENU, HUD_REPEL, SINGLE_SCREEN, MORE_TAB, TOUCH_CONTROLS,
         COMPANION_TAB, REUSABLE_TMS, UNLIT_SCREEN, LIGHT_COMPANION,
     )
 

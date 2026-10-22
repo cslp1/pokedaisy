@@ -296,7 +296,12 @@ ROM hacks are excluded. This list describes companion support, not emulator comp
 
 ## Experimental work in this fork
 
-Pokémon Black Version 2, English USA/Europe (`IREO`, revision 0): party reader and ROM data extraction are implemented locally. Full live-game and Android tablet verification is still pending. Bag, battle advice, map, Pokédex, guide and party artwork are not implemented. Do not list it as fully supported yet.
+Pokémon Black Version 2, English USA/Europe (`IREO`, revision 0), as a preview: party, bag (pockets, quantities,
+descriptions), live battle info and matchup advice, the Unova Town Map with your location, the Pokédex (seen / caught,
+species pages) and the guide (wild Pokémon by season, gym leaders, Elite Four, Champion), all read from your cart and
+save. DS games also get X and Y on the touch controls. Checked against headless captures of the game; Android tablet
+verification is still pending, and battle buttons, FLY, field items and the guide's area lists aren't done for Black 2.
+Not listed as fully supported yet.
 
 <details>
 <summary><strong>Notes on the table</strong></summary>
@@ -311,7 +316,8 @@ its 289 in National order; its faithful builds keep the original games' types an
 Platinum, HeartGold and SoulSilver are the DS games the companion reads, in the USA release listed (Platinum's
 revision 1); their pictures, Pokédex pages and maps come from your cart. Platinum's battles show in the BATTLE tab,
 HeartGold's and SoulSilver's not yet, and on the DS the battle buttons don't press the game's menus yet. On a
-one-screen device a DS game shows its top screen; the touch screen needs a second screen for now.
+one-screen device held upright, the DS touch screen appears below the top screen. Tap COMPANION / GAME SCREEN to switch the lower area. Landscape on one screen still shows only the top screen.
+Black 2 (the English USA / Europe cart, IREO revision 0) is a preview: party, bag (pockets, quantities, descriptions), the BATTLE tab (both sides live, the foe's team, matchup advice), the Unova Town Map with where you are, the Pokédex (seen / caught, pages, evolutions, moves) and the guide (wild Pokémon for the season, the gyms, the Elite Four and the Champion), all read from your cart and save. Its battle buttons, FLY, field items and the field reads aren't there yet; its guide has no area lists. DS games get X and Y on the touch controls.
 Map ◐ means place names
 only, without the map picture. Guide ◐ means the live pages only (the wild encounters here and the next
 boss), without the area lists. Battle ◐ means the battle panes work but haven't

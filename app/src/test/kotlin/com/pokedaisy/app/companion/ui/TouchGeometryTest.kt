@@ -19,21 +19,29 @@ class TouchGeometryTest {
     private val allExtras = TouchControlsStyle(extras = TouchButton.extras.toSet())
 
     /** Phones sideways (20:9, 19.5:9, 16:9) and upright, as the game's screen would be laid out. */
-    private val screens = listOf(2400f to 1080f, 2340f to 1080f, 1920f to 1080f, 1080f to 2400f, 1080f to 2340f, 1080f to 1920f)
+    private val screens = listOf(2400f to 1080f, 2340f to 1080f, 1920f to 1080f, 1080f to 2400f, 1080f to 2340f, 1080f to 1920f,
+        // a tablet (the Redmi Pad 2's 2560 x 1600 at the same density), both ways
+        2560f to 1600f, 1600f to 2560f)
 
-    private fun overlap(a: TouchGeometry.Item, b: TouchGeometry.Item) =
-        a.left < b.right - 1 && b.left < a.right - 1 && a.top < b.bottom - 1 && b.top < a.bottom - 1
+    private fun overlap(a: TouchGeometry.Item, b: TouchGeometry.Item): Boolean {
+        // Two round buttons (a DS game's diamond): their circles, whose boxes meet at the corners.
+        if (a.shape == TouchGeometry.Shape.ROUND && b.shape == TouchGeometry.Shape.ROUND) {
+            return kotlin.math.hypot(a.cx - b.cx, a.cy - b.cy) < (a.w + b.w) / 2 - 1
+        }
+        return a.left < b.right - 1 && b.left < a.right - 1 && a.top < b.bottom - 1 && b.top < a.bottom - 1
+    }
 
     @Test fun presetsFitWithoutOverlaps() {
         for ((w, h) in screens) for (preset in TouchPreset.entries) for (size in TouchSize.entries)
             for (extras in listOf(TouchControlsStyle().extras, allExtras.extras)) for (position in TouchPosition.entries) for (under in listOf(false, true))
-            for (gameBoy in listOf(false, true)) {
+            for (gameBoy in listOf(false, true)) for (ds in listOf(false, true)) {
             if (w > h && (position != TouchPosition.MIDDLE || under)) continue   // upright-only settings
+            if (gameBoy && ds) continue
             val style = TouchControlsStyle(preset = preset, size = size, extras = extras, position = position)
             val stage = simulateTouchStage(w, h, dp, underGame = under)
-            val p = TouchGeometry.place(style, stage.area.width, stage.area.height, dp, stage.portrait, gameBoy = gameBoy)
-            val what = "$preset $size ${w.toInt()}x${h.toInt()} extras=${extras.size} $position under=$under gb=$gameBoy"
-            assertEquals(what, style.shown(gameBoy).toSet(), p.items.map { it.button }.toSet())
+            val p = TouchGeometry.place(style, stage.area.width, stage.area.height, dp, stage.portrait, gameBoy = gameBoy, ds = ds)
+            val what = "$preset $size ${w.toInt()}x${h.toInt()} extras=${extras.size} $position under=$under gb=$gameBoy ds=$ds"
+            assertEquals(what, style.shown(gameBoy, ds).toSet(), p.items.map { it.button }.toSet())
             for (item in p.items) {
                 assertTrue("$what: ${item.button} off the area", item.left >= -1 && item.top >= -1 && item.right <= p.w + 1 && item.bottom <= p.h + 1)
             }
@@ -93,6 +101,22 @@ class TouchGeometryTest {
         val none = simulateTouchStage(1080f, 2400f, dp, underGame = true, expand = true, padStrip = 0)
         val bottom = simulateTouchStage(1080f, 2400f, dp, underGame = false, expand = true)
         assertEquals(bottom.companion, none.companion)
+    }
+
+    @Test fun dsGamesGetXAndYInTheDsDiamond() {
+        for (portrait in listOf(false, true)) for (preset in TouchPreset.entries) {
+            val (w, h) = if (portrait) 1600f to 2560f else 2560f to 1600f
+            val stage = simulateTouchStage(w, h, dp)
+            val p = TouchGeometry.place(TouchControlsStyle(preset = preset), stage.area.width, stage.area.height, dp, portrait, ds = true)
+            val x = p.item(TouchButton.X)!!; val y = p.item(TouchButton.Y)!!
+            val a = p.item(TouchButton.A)!!; val b = p.item(TouchButton.B)!!
+            // X over B, Y left of A, as on the DS.
+            assertEquals(x.cx, b.cx, 0.5f); assertTrue(x.cy < b.cy)
+            assertEquals(y.cy, a.cy, 0.5f); assertTrue(y.cx < a.cx)
+            assertEquals(1 shl 10, TouchButton.X.gba); assertEquals(1 shl 11, TouchButton.Y.gba)
+        }
+        // Not on a GBA game.
+        assertTrue(TouchGeometry.place(TouchControlsStyle(), 2400f, 1080f, dp, false).items.none { it.button == TouchButton.X || it.button == TouchButton.Y })
     }
 
     @Test fun gameBoyHasNoShoulders() {

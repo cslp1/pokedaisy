@@ -1404,7 +1404,7 @@ class PokeDaisyActivity : Activity() {
             val snap by telemetry.snapshot.collectAsState()
             CompanionScreen(snap, stateSlots, companionSettings, battleInput, back = panelBack, keys = panelKeys, clickSound = playClick, achievements = RetroAchievements, statusBar = companionStatusBar, itemUse = itemUse, fly = flyAction, askForSupport = askForSupport, gamePick = gamePick, shareBestEffort = shareBestEffort)
         })
-        portraitPanel = PortraitPanel(root, view, touchControls, Prefs(this), portraitBack, playClick) {
+        portraitPanel = PortraitPanel(root, view, touchControls, Prefs(this), portraitBack, playClick, dsGame = { romIsNds }) {
             val snap by telemetry.snapshot.collectAsState()
             CompanionScreen(snap, stateSlots, companionSettings, battleInput, back = portraitBack, clickSound = playClick, achievements = RetroAchievements, statusBar = companionStatusBar, itemUse = itemUse, fly = flyAction, askForSupport = askForSupport, gamePick = gamePick, shareBestEffort = shareBestEffort)
         }
@@ -1477,6 +1477,11 @@ class PokeDaisyActivity : Activity() {
             else -> null
         }
         input.ds = nds
+        // A DS game's X and Y on the touch controls (they press its X / Y keys, MgbaCore.Key.X / Y).
+        runOnUiThread {
+            touchControls.dsButtons = nds
+            syncTouchControls()
+        }
         val gba = !gameBoy && !nds
         // EXPAND: the GBA games pk_wide.c knows, and Game Boy ones pk_wide_gb.c does (Yellow, Crystal); the field reads are GBA only.
         wideGame = if (nds) WideScreen.OFF else WideScreen.gameFor(crc)
@@ -2370,7 +2375,7 @@ class PokeDaisyActivity : Activity() {
             val prefs = Prefs(this)
             val w = stage.width.takeIf { it > 0 } ?: resources.displayMetrics.widthPixels
             portraitPanel.padStrip = if (show && portraitPanel.enabled && portraitPanel.expand && prefs.portraitCompanionUnderGame)
-                com.pokedaisy.app.companion.ui.TouchGeometry.naturalHeight(style, w.toFloat(), resources.displayMetrics.density, !touchControls.shoulders)
+                com.pokedaisy.app.companion.ui.TouchGeometry.naturalHeight(style, w.toFloat(), resources.displayMetrics.density, !touchControls.shoulders, touchControls.dsButtons)
             else 0
         }
         syncHudClear()
@@ -2437,7 +2442,7 @@ class PokeDaisyActivity : Activity() {
         return com.pokedaisy.app.companion.TouchStage(
             w, h, resources.displayMetrics.density, portrait, game, area,
             companion = if (portrait) portraitPanel.companionBounds() else null,
-            gameAspect = aspect, gameBoy = !touchControls.shoulders,
+            gameAspect = aspect, gameBoy = !touchControls.shoulders, ds = touchControls.dsButtons,
         )
     }
 
