@@ -116,7 +116,7 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix = ".black2"
-            versionNameSuffix = "-black2-preview"
+            versionNameSuffix = "-black2"
         }
         release {
             isMinifyEnabled = false

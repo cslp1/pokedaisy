@@ -1968,4 +1968,4 @@ BLACK2_ROM=/path/to/cart.nds BLACK2_CAPTURES=/path/to/captures ./gradlew -p ui-p
 ```
 
 `BLACK2_CAPTURES` holds `cap_starter/`, `cap_b2/`, `cap_b3/` (nds_dump `dump` directories). Debug APKs use
-`com.pokedaisy.app.black2`, labelled PokeDaisy Black 2 Preview, beside the original app.
+`com.pokedaisy.app.black2`, labelled PokeDaisy Black 2, beside the original app.
