@@ -102,3 +102,11 @@ games, the ROM hacks and the decompilation projects for interoperability.
 The unit tests' fixtures (app/src/test/resources/fixtures) are snapshots of
 the emulated console's RAM while a game ran; like any RAM dump they hold a
 few kilobytes the game copied there from its ROM. They aren't in the app.
+
+Experimental 3DS player: unmodified Azahar libretro Android core 2126.2
+(Citra / Azahar contributors), GPL version 2 or later / GPL version 3 or later,
+redistributed under GPL version 3 or later with this application.
+Complete corresponding upstream source, including dependencies:
+https://github.com/azahar-emu/azahar/releases/download/2126.2/azahar-unified-source-2126.2.tar.xz
+The exact release binary is pinned in scripts/prepare_3ds_core.py.
+libretro API header: libretro contributors, MIT license (full notice in the header).

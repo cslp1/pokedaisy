@@ -61,8 +61,8 @@ android {
         targetSdk = 34
         // Bump both for every GitHub release: the updater compares versionName
         // against the release tag (v<versionName>), Android needs versionCode to grow.
-        versionCode = 13
-        versionName = "1.3.0"
+        versionCode = 14
+        versionName = "1.3.1"
         // Whether this build can send crash reports at all (CrashReports.available).
         buildConfigField("boolean", "CRASHLYTICS", crashlytics.toString())
         buildConfigField("String", "SCREENSCRAPER_DEV_ID", "\"${screenScraperSecret("screenscraper.devId", "SCREENSCRAPER_DEV_ID")}\"")
@@ -160,6 +160,7 @@ android {
 val licensesAsset by tasks.registering {
     val parts = listOf(
         "PokeDaisy (NOTICE)" to "NOTICE",
+        "libretro API header (MIT)" to "app/src/main/cpp/threeds/libretro.h",
         "GNU General Public License v3 (PokeDaisy)" to "LICENSE",
         "mGBA - Mozilla Public License 2.0" to "third_party/mgba/LICENSE",
         "blip_buf (in mGBA) - GNU LGPL 2.1" to "third_party/mgba/src/third-party/blip_buf/license.txt",
@@ -241,3 +242,10 @@ dependencies {
     // The real org.json (android.jar's is a stub in unit tests): ScreenScraperTest and DocsSearchTest parse JSON.
     testImplementation("org.json:json:20240303")
 }
+
+// The 3DS engine is the unmodified official upstream release, never a ROM.
+val prepareThreeDsCore by tasks.registering(Exec::class) {
+    workingDir(rootProject.projectDir)
+    commandLine("python3", "scripts/prepare_3ds_core.py")
+}
+tasks.named("preBuild") { dependsOn(prepareThreeDsCore) }

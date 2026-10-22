@@ -474,6 +474,11 @@ class LibraryActivity : ComponentActivity() {
                         startActivity(Intent(this@LibraryActivity, SettingsActivity::class.java))
                     }
                 }
+                androidx.compose.material3.TextButton(onClick = {
+                    startActivity(Intent(this@LibraryActivity, com.pokedaisy.app.threeds.ThreeDsActivity::class.java))
+                }, modifier = Modifier.padding(horizontal = SCREEN_MARGIN)) {
+                    GbaText("3DS EXPERIMENTAL" + (com.pokedaisy.app.companion.NewFeatures.badge(com.pokedaisy.app.companion.NewFeatures.THREE_DS_PREVIEW)?.let { " · $it" } ?: ""), OptionColors.label, OptionColors.labelShadow, small)
+                }
                 Spacer(Modifier.height(m.u * (if (library.isNotEmpty()) 8 else 4)))
 
                 if (library.isNotEmpty()) {

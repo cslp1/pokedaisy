@@ -62,3 +62,11 @@ __pycache__/
 # 3DS build output (3ds/README.md)
 *.3dsx
 *.smdh
+# Downloaded official 3DS emulator core, prepared by scripts/prepare_3ds_core.py.
+app/src/main/jniLibs/arm64-v8a/libazahar_libretro.so
+
+# Never commit 3DS game dumps.
+*.cci
+*.3ds
+*.cxi
+*.cia

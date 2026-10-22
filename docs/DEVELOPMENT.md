@@ -1969,3 +1969,9 @@ BLACK2_ROM=/path/to/cart.nds BLACK2_CAPTURES=/path/to/captures ./gradlew -p ui-p
 
 `BLACK2_CAPTURES` holds `cap_starter/`, `cap_b2/`, `cap_b3/` (nds_dump `dump` directories). Debug APKs use
 `com.pokedaisy.app.black2`, labelled PokeDaisy Black 2, beside the original app.
+
+## Experimental 3DS host
+
+`threeds/host.cpp` implements a small libretro OpenGL ES / AAudio host for the official Azahar Android core 2126.2. `scripts/prepare_3ds_core.py` downloads the release, verifies both archive and library SHA-256, and installs the ignored native library. The library and its complete corresponding source are identified in NOTICE. No ROM or system files are distributed.
+
+The new player uses its own `:threeds` process and private `3ds/` directory, not the existing GBA / DS core. Only decrypted NCSD/NCCH cartridge imports are accepted. This is experimental: no Gen 6 live readers, 3DS save-state UI, game compatibility claim or whole-guide gameplay verification yet. The original, manual Omega Ruby story guide is JSON under `assets/guides`, separate from the ROM-derived tables needed for HERE / DEX parity.

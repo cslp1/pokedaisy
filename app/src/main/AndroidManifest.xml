@@ -52,6 +52,9 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.PokeDaisy">
 
+        <activity android:name=".threeds.ThreeDsActivity" android:launchMode="singleTask" android:exported="false" android:process=":threeds" android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity android:name=".threeds.OmegaGuideActivity" android:exported="false" android:process=":threeds" />
+
         <!-- Crash reports are opt-in (CrashReports.kt): nothing is collected or sent
              until the player turns them on in Settings or says yes to the one-time ask. -->
         <meta-data

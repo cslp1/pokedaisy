@@ -409,3 +409,11 @@ are trademarks of Nintendo. Device names (AYN Thor, Retroid, Anbernic) belong to
 makers, and RetroAchievements and SteamGridDB are independent services; none of them
 endorse PokeDaisy. ROM hacks belong to their creators. No games, BIOS or game art are
 included: use your own legally dumped ROMs.
+
+## Experimental 3DS player (this fork)
+
+The `omega-ruby-support` branch embeds the unmodified official Azahar 2126.2 Android libretro core. Open **3DS EXPERIMENTAL** from the library, import your own decrypted `.cci` / `.3ds` cartridge, and save normally inside the game. Requires ARM64, Android 10 or newer and OpenGL ES 3.2. Full cartridges can require several gigabytes of free storage while importing. CIA installation is not implemented.
+
+The **Omega Ruby guide** has 70 location/story chapters and 280 individual steps, searchable text, prerequisites, useful rewards, optional detours, directions onward and per-step manual progress. It is not checked through a complete playthrough and does not yet contain every item or encounter.
+
+This is an experimental engine integration, not confirmed full Omega Ruby companion support. Gen 6 live party, bag, battle, map, dex and story readers are not implemented. GBA and DS games continue to use their existing engines. See `docs/manual/3ds-preview.md` and `docs/DEVELOPMENT.md`.

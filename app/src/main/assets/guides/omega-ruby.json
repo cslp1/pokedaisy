@@ -1,0 +1,917 @@
+{
+  "title": "Omega Ruby: detailed story guide",
+  "verified": false,
+  "notice": "Original guide text, not checked through a complete playthrough. Manual progress only. No live story flags, complete encounter tables or all-items database yet.",
+  "chapters": [
+    {
+      "id": "or-001",
+      "title": "Littleroot Town: settle in",
+      "gate": "Start a new game",
+      "steps": [
+        "Go upstairs in your house and set the clock.",
+        "Speak to your mother and watch the television event downstairs.",
+        "Visit the neighboring house and meet your rival upstairs.",
+        "Leave town north toward Route 101."
+      ],
+      "extra": "This guide follows Omega Ruby, the 3DS remake. Original Ruby has different events and rewards.",
+      "next": "Route 101"
+    },
+    {
+      "id": "or-002",
+      "title": "Route 101: rescue Professor Birch",
+      "gate": "Leave Littleroot",
+      "steps": [
+        "Approach Birch when he calls for help.",
+        "Inspect his bag and choose Treecko, Torchic or Mudkip.",
+        "Win the opening battle and return to the laboratory.",
+        "Accept your partner and go north through Oldale Town."
+      ],
+      "extra": "Choose the partner you like; you do not need a particular starter to finish the game.",
+      "next": "Route 103"
+    },
+    {
+      "id": "or-003",
+      "title": "Oldale Town and Route 103: first rival battle",
+      "gate": "Receive your starter",
+      "steps": [
+        "Heal in Oldale before heading north.",
+        "Follow Route 103 to your rival and start the battle.",
+        "Return south through Oldale to Birch’s laboratory.",
+        "Receive the Pokédex and catching supplies, then leave town again."
+      ],
+      "extra": "The rival’s starter has a type advantage. Healing first is more useful than trying to win while already injured.",
+      "next": "Route 101 and Route 102"
+    },
+    {
+      "id": "or-004",
+      "title": "DexNav introduction and Route 102",
+      "gate": "Receive the Pokédex",
+      "steps": [
+        "Follow your rival’s DexNav introduction on Route 101.",
+        "Move the Circle Pad gently when instructed to sneak toward the hidden Pokémon.",
+        "Continue west from Oldale onto Route 102.",
+        "Battle trainers, catch additional team members and enter Petalburg."
+      ],
+      "extra": "Sneaking needs analog input. Use the Circle Pad area and drag a small distance from its center to move gently; the D-pad is not a substitute for analog sneaking.",
+      "next": "Petalburg City"
+    },
+    {
+      "id": "or-005",
+      "title": "Petalburg City: Norman and Wally",
+      "gate": "Reach Petalburg",
+      "steps": [
+        "Visit the Gym and speak with Norman.",
+        "Accompany Wally for his catching lesson.",
+        "Return to the Gym and finish Norman’s dialogue.",
+        "Leave west onto Route 104."
+      ],
+      "extra": "Norman is your father, but this is not the time for his Gym battle. Return after four badges.",
+      "next": "Route 104 south"
+    },
+    {
+      "id": "or-006",
+      "title": "Route 104 south: the coastal path",
+      "gate": "Finish the Petalburg introduction",
+      "steps": [
+        "Follow the coastal route north.",
+        "Note Mr. Briney’s cottage; you will need his boat after the Rustboro story.",
+        "Enter Petalburg Woods from the northern end of the route.",
+        "Heal or buy supplies before tackling the forest trainers."
+      ],
+      "extra": "You cannot cross the sea just by talking to Mr. Briney now. His story event comes first.",
+      "next": "Petalburg Woods"
+    },
+    {
+      "id": "or-007",
+      "title": "Petalburg Woods: help the Devon employee",
+      "gate": "Enter the woods",
+      "steps": [
+        "Follow the forest path until the Devon employee is confronted.",
+        "Defeat the Team Magma grunt.",
+        "Speak to the employee after the battle and continue north.",
+        "Leave the forest onto northern Route 104."
+      ],
+      "extra": "Small trees mark optional Cut detours. They are not a requirement for reaching Rustboro.",
+      "next": "Route 104 north"
+    },
+    {
+      "id": "or-008",
+      "title": "Route 104 north and the flower shop",
+      "gate": "Leave Petalburg Woods",
+      "steps": [
+        "Visit the flower shop if you want to grow Berries.",
+        "Continue toward the bridge and finish the trainers along the path.",
+        "Cross into Rustboro City.",
+        "Heal before entering the Gym."
+      ],
+      "extra": "Optional: return later with Cut for blocked forest and route items.",
+      "next": "Rustboro Gym"
+    },
+    {
+      "id": "or-009",
+      "title": "Rustboro Gym: Roxanne",
+      "gate": "Reach Rustboro",
+      "steps": [
+        "Bring Water or Grass attacks if your team has them.",
+        "Work through or around the Gym trainers.",
+        "Defeat Geodude Lv12 and Nosepass Lv14.",
+        "Receive the Stone Badge and TM39 Rock Tomb."
+      ],
+      "extra": "Rock Tomb can lower Speed. A Fire starter benefits from a second team member rather than repeatedly attacking a Rock-type weakness.",
+      "next": "Devon’s stolen goods"
+    },
+    {
+      "id": "or-010",
+      "title": "Rustboro: the stolen Devon goods",
+      "gate": "Defeat Roxanne",
+      "steps": [
+        "Leave the Gym and follow the stolen-goods event.",
+        "Speak with the Devon employee and head northeast toward Route 116.",
+        "Before leaving the city, visit the Cut-giving house if you want HM01.",
+        "Follow Route 116 toward Rusturf Tunnel."
+      ],
+      "extra": "Cut is now usable with the Stone Badge. It opens optional shortcuts and items, but the chase itself does not require cutting every tree.",
+      "next": "Rusturf Tunnel"
+    },
+    {
+      "id": "or-011",
+      "title": "Route 116 and Rusturf Tunnel: rescue Peeko",
+      "gate": "Begin the Devon chase",
+      "steps": [
+        "Follow Route 116 east into Rusturf Tunnel.",
+        "Approach the Magma grunt holding Peeko and battle him.",
+        "Recover the Devon Parts and let Mr. Briney recover Peeko.",
+        "Return to the Devon employee in Rustboro."
+      ],
+      "extra": "The tunnel is still blocked by breakable rocks. Do not try to reach Verdanturf through it yet.",
+      "next": "Devon Corporation"
+    },
+    {
+      "id": "or-012",
+      "title": "Devon Corporation: two deliveries",
+      "gate": "Recover the Devon Parts",
+      "steps": [
+        "Visit Devon Corporation and meet Mr. Stone.",
+        "Accept the Letter for Steven and the delivery for Captain Stern.",
+        "Finish the employee’s explanation before leaving the building.",
+        "Return through Petalburg Woods to Mr. Briney’s cottage."
+      ],
+      "extra": "Keep both deliveries in mind: Steven is in Dewford’s Granite Cave; Stern is in Slateport.",
+      "next": "Mr. Briney’s boat"
+    },
+    {
+      "id": "or-013",
+      "title": "Mr. Briney: sail to Dewford",
+      "gate": "Rescue Peeko and accept the deliveries",
+      "steps": [
+        "Enter the cottage on southern Route 104.",
+        "Speak with Mr. Briney and choose Dewford.",
+        "Use the Pokémon Center on arrival.",
+        "Explore the town before the Gym and Granite Cave."
+      ],
+      "extra": "Optional: speak to the fisherman in Dewford for the Old Rod.",
+      "next": "Dewford Gym"
+    },
+    {
+      "id": "or-014",
+      "title": "Dewford Gym: Brawly",
+      "gate": "Arrive in Dewford",
+      "steps": [
+        "Bring Flying, Psychic or Fairy attacks when available.",
+        "Use the floor switches to see the route, then remember the path as the lighting changes.",
+        "Defeat Machop Lv14 and Makuhita Lv16.",
+        "Collect the Knuckle Badge and TM08 Bulk Up."
+      ],
+      "extra": "This is the remake’s fitness-themed Gym, not the original GBA darkness puzzle.",
+      "next": "Granite Cave"
+    },
+    {
+      "id": "or-015",
+      "title": "Granite Cave: deliver Steven’s Letter",
+      "gate": "Clear Brawly’s Gym",
+      "steps": [
+        "Go north from Dewford through Route 106 to Granite Cave.",
+        "Follow the accessible route to the mural room.",
+        "Speak with Steven and hand over the Letter.",
+        "Return to Dewford and ask Mr. Briney to sail to Slateport."
+      ],
+      "extra": "Later cave floors and bike-dependent exploration are optional return trips. You do not need to fully explore the cave to complete the delivery.",
+      "next": "Route 109 and Slateport"
+    },
+    {
+      "id": "or-016",
+      "title": "Route 109 and Slateport: locate Stern",
+      "gate": "Sail from Dewford",
+      "steps": [
+        "Walk north from the beach into Slateport.",
+        "Visit Stern’s Shipyard and speak with the worker about Captain Stern.",
+        "Go to the Oceanic Museum.",
+        "Pay admission and find Stern upstairs."
+      ],
+      "extra": "Optional: the beach trainers and Seashore House offer training before the next stretch.",
+      "next": "Oceanic Museum"
+    },
+    {
+      "id": "or-017",
+      "title": "Oceanic Museum: deliver the Devon Parts",
+      "gate": "Find Captain Stern",
+      "steps": [
+        "Speak with Stern upstairs and begin the delivery event.",
+        "Defeat the Magma grunts who interrupt.",
+        "Finish the conversation after the villains leave.",
+        "Leave the museum and continue the city’s introduction events."
+      ],
+      "extra": "If Stern is not where expected, return to the shipyard and finish the worker’s dialogue first.",
+      "next": "Route 110"
+    },
+    {
+      "id": "or-018",
+      "title": "Slateport: optional contests and supplies",
+      "gate": "Complete the museum event",
+      "steps": [
+        "Visit the Contest Spectacular building if you want to try contests.",
+        "Buy healing items and Poké Balls before leaving town.",
+        "Leave north onto Route 110.",
+        "Follow the road toward the rival battle rather than looking for a ferry to Mauville."
+      ],
+      "extra": "Contests are an optional activity; they are not required for the next Gym badge.",
+      "next": "Route 110 rival battle"
+    },
+    {
+      "id": "or-019",
+      "title": "Route 110: rival battle and route north",
+      "gate": "Leave Slateport",
+      "steps": [
+        "Heal before the rival encounter on the main path.",
+        "Account for the rival’s starter type advantage.",
+        "After the battle, finish the conversation and take the northbound path.",
+        "Enter Mauville City and heal."
+      ],
+      "extra": "Optional: the Trick House is on this route and can be revisited as more challenges unlock.",
+      "next": "Mauville City"
+    },
+    {
+      "id": "or-020",
+      "title": "Mauville City: Wally and a bicycle",
+      "gate": "Reach Mauville",
+      "steps": [
+        "Locate the Gym and finish Wally’s event outside it.",
+        "Battle Wally when prompted before entering the Gym.",
+        "Visit Rydel’s Cycles and choose a Mach Bike or Acro Bike.",
+        "Return to challenge Wattson."
+      ],
+      "extra": "Mach Bike is useful for speed and cracked floors. Acro Bike handles hopping and narrow rails. You can return to Rydel to change bikes.",
+      "next": "Mauville Gym"
+    },
+    {
+      "id": "or-021",
+      "title": "Mauville Gym: Wattson",
+      "gate": "Finish Wally’s Gym entrance event",
+      "steps": [
+        "Prepare Ground attacks or another answer to Electric and Steel Pokémon.",
+        "Use switches to rearrange the electric barriers.",
+        "Defeat Magnemite Lv19, Voltorb Lv19 and Magneton Lv21.",
+        "Collect the Dynamo Badge and TM72 Volt Switch."
+      ],
+      "extra": "The badge allows Rock Smash outside battle. Make sure you also obtained HM06 before trying to break rocks on the northern route.",
+      "next": "Route 117 or Route 111"
+    },
+    {
+      "id": "or-022",
+      "title": "Verdanturf and Rusturf Tunnel: optional reunion",
+      "gate": "Obtain usable Rock Smash",
+      "steps": [
+        "Travel west from Mauville across Route 117 to Verdanturf.",
+        "Enter Rusturf Tunnel from town.",
+        "Use Rock Smash on the rocks separating the couple.",
+        "Finish their conversation and collect the reward before returning."
+      ],
+      "extra": "This is an optional detour. Do not confuse the remake’s reward with the original Ruby/Sapphire reward.",
+      "next": "Return to Mauville, then go north"
+    },
+    {
+      "id": "or-023",
+      "title": "Route 111 south and Route 112",
+      "gate": "Earn the Dynamo Badge",
+      "steps": [
+        "Leave Mauville north on Route 111.",
+        "Use Rock Smash to pass the breakable rocks.",
+        "Turn west onto Route 112 because the desert sandstorm is not yet passable.",
+        "Enter Fiery Path while Magma blocks the cable car."
+      ],
+      "extra": "Optional: the Winstrate family offers consecutive battles. Heal first if you take the challenge.",
+      "next": "Fiery Path"
+    },
+    {
+      "id": "or-024",
+      "title": "Fiery Path and the northern routes",
+      "gate": "Reach Route 112",
+      "steps": [
+        "Walk through Fiery Path to the northern exit.",
+        "Continue across northern Route 112 and Route 111.",
+        "Use the available rest stop when the team needs healing.",
+        "Turn west onto the ash-covered Route 113 toward Fallarbor."
+      ],
+      "extra": "Strength-dependent cave items can wait until later. The direct path through Fiery Path does not require moving those boulders.",
+      "next": "Fallarbor Town"
+    },
+    {
+      "id": "or-025",
+      "title": "Fallarbor Town and Route 114",
+      "gate": "Cross Route 113",
+      "steps": [
+        "Visit Professor Cozmo’s house and learn about his absence.",
+        "Heal and restock in Fallarbor.",
+        "Travel west onto Route 114.",
+        "Follow the route south into Meteor Falls."
+      ],
+      "extra": "Optional: explore the local houses and the Fossil Maniac’s home. These are not substitutes for the Meteor Falls story event.",
+      "next": "Meteor Falls"
+    },
+    {
+      "id": "or-026",
+      "title": "Meteor Falls: the stolen Meteorite",
+      "gate": "Reach Meteor Falls from Route 114",
+      "steps": [
+        "Approach the scientists and villain-team event inside.",
+        "Watch the opposing team’s interruption and finish the scene.",
+        "Leave the cave and return toward Route 112.",
+        "Check the cable car again now that the story has advanced."
+      ],
+      "extra": "You do not need Waterfall to see this first story event. The upper cave sections are later exploration.",
+      "next": "Mt. Chimney"
+    },
+    {
+      "id": "or-027",
+      "title": "Mt. Chimney: stop Team Magma",
+      "gate": "Complete Meteor Falls’ first event",
+      "steps": [
+        "Take the cable car from Route 112.",
+        "Follow the summit path through Team Magma’s forces.",
+        "Defeat the administrator and Maxie as the story requires.",
+        "Inspect the machine and recover the Meteorite before descending."
+      ],
+      "extra": "Heal between fights if needed; there is no Gym badge awarded at the summit.",
+      "next": "Jagged Pass"
+    },
+    {
+      "id": "or-028",
+      "title": "Jagged Pass and Lavaridge Town",
+      "gate": "Resolve the summit confrontation",
+      "steps": [
+        "Leave Mt. Chimney by the southbound Jagged Pass.",
+        "Choose the downward paths toward Lavaridge.",
+        "Heal in town and prepare for Fire-type battles.",
+        "Enter Flannery’s Gym."
+      ],
+      "extra": "Acro Bike detours are optional. You can reach the town without completing every ledge or hopping route.",
+      "next": "Lavaridge Gym"
+    },
+    {
+      "id": "or-029",
+      "title": "Lavaridge Gym: Flannery",
+      "gate": "Reach Lavaridge",
+      "steps": [
+        "Bring a suitable Water, Ground or Rock attacker.",
+        "Use the hot-spring floor passages and upper-floor exits to progress.",
+        "Defeat Slugma Lv26, Numel Lv26 and Torkoal Lv28.",
+        "Receive the Heat Badge and TM50 Overheat."
+      ],
+      "extra": "Sunlight makes Water attacks weaker and Fire attacks stronger. Heal before committing to the leader battle.",
+      "next": "Go-Goggles and Petalburg"
+    },
+    {
+      "id": "or-030",
+      "title": "After Flannery: desert or return home",
+      "gate": "Earn the Heat Badge",
+      "steps": [
+        "Leave the Gym and finish the rival conversation.",
+        "Accept the Go-Goggles for Route 111’s desert.",
+        "Choose the return toward Petalburg for the next required Gym.",
+        "Use the desert as an optional exploration trip if you prefer."
+      ],
+      "extra": "The desert is not the mandatory next Gym route. You can return to explore it later.",
+      "next": "Petalburg Gym"
+    },
+    {
+      "id": "or-031",
+      "title": "Route 111 desert: optional fossils",
+      "gate": "Receive the Go-Goggles",
+      "steps": [
+        "Enter the desert from Route 111.",
+        "Explore the sand paths for trainers and items.",
+        "Choose between the Root Fossil and Claw Fossil when you reach them.",
+        "Take a fossil to Devon Corporation’s researcher in Rustboro for revival."
+      ],
+      "extra": "Unlike Emerald, this remake does not use Mirage Tower for the initial fossil choice.",
+      "next": "Petalburg for the fifth badge"
+    },
+    {
+      "id": "or-032",
+      "title": "Petalburg Gym: Norman",
+      "gate": "Earn four badges",
+      "steps": [
+        "Return to Petalburg and enter Norman’s Gym.",
+        "Choose routes through the rooms and read the trainers’ battle themes.",
+        "Prepare for Slaking’s alternating active and Truant turns.",
+        "Defeat Norman and finish the conversation with Wally’s family."
+      ],
+      "extra": "Required reward: HM03 Surf after the Gym event. The Balance Badge permits its field use.",
+      "next": "Route 118"
+    },
+    {
+      "id": "or-033",
+      "title": "Route 118: cross the river",
+      "gate": "Obtain Surf and the Balance Badge",
+      "steps": [
+        "Return to Mauville and leave through the eastern exit.",
+        "Teach Surf to a compatible Pokémon and cross Route 118’s water.",
+        "Approach Steven to trigger the next story event.",
+        "Follow him to Southern Island."
+      ],
+      "extra": "If you cannot surf, check both parts of the requirement: the HM from the Petalburg event and a Pokémon that knows it.",
+      "next": "Southern Island"
+    },
+    {
+      "id": "or-034",
+      "title": "Southern Island: Mega Evolution",
+      "gate": "Trigger Steven’s Route 118 event",
+      "steps": [
+        "Follow Steven to the island’s clearing.",
+        "Join the confrontation against Team Magma.",
+        "Complete the event with Latios and the Mega Evolution explanation.",
+        "Return to Route 118 and continue east and north."
+      ],
+      "extra": "Omega Ruby gives Latios in this event; Alpha Sapphire differs. This guide does not substitute the opposite version’s gift.",
+      "next": "Route 119"
+    },
+    {
+      "id": "or-035",
+      "title": "Route 119: reach the Weather Institute",
+      "gate": "Finish Southern Island",
+      "steps": [
+        "Head north into Route 119’s tall grass.",
+        "Work toward the Weather Institute, healing before entering if possible.",
+        "Defeat Team Magma inside and reach the upper floor.",
+        "Resolve the confrontation and accept the institute’s gift if you have room."
+      ],
+      "extra": "Do not spend time trying to make the blocked bridge open before clearing the institute.",
+      "next": "Route 119 rival battle"
+    },
+    {
+      "id": "or-036",
+      "title": "Route 119: Fly and the road to Fortree",
+      "gate": "Clear the Weather Institute",
+      "steps": [
+        "Cross the reopened bridge and continue north.",
+        "Defeat the rival and complete the conversation.",
+        "Receive HM02 Fly.",
+        "Reach Fortree City and heal before looking for the Gym."
+      ],
+      "extra": "Fly is a travel tool once the necessary badge permits its field use. Receiving the HM alone does not grant every field permission.",
+      "next": "Route 120"
+    },
+    {
+      "id": "or-037",
+      "title": "Fortree’s invisible obstacle",
+      "gate": "Reach Fortree",
+      "steps": [
+        "Check the Gym approach and note the unseen obstacle.",
+        "Leave east onto Route 120 and find Steven.",
+        "Watch his Devon Scope demonstration and finish the encounter.",
+        "Return to Fortree with the Devon Scope to clear the Gym approach."
+      ],
+      "extra": "Pressing toward the invisible blocker repeatedly will not progress the story. Steven supplies the needed key item.",
+      "next": "Fortree Gym"
+    },
+    {
+      "id": "or-038",
+      "title": "Fortree Gym: Winona",
+      "gate": "Obtain the Devon Scope",
+      "steps": [
+        "Use the rotating barriers to navigate the Gym.",
+        "Prepare Electric, Ice or Rock coverage while checking dual types.",
+        "Remember that Altaria is Dragon/Flying; an Electric attack is only neutral against it.",
+        "Defeat Winona and collect the Feather Badge."
+      ],
+      "extra": "The Feather Badge unlocks Fly for field travel. You can now revisit earlier towns much more conveniently.",
+      "next": "Route 120 and Route 121"
+    },
+    {
+      "id": "or-039",
+      "title": "Routes 120 and 121: east toward Lilycove",
+      "gate": "Clear Winona’s Gym",
+      "steps": [
+        "Travel east and south along Route 120.",
+        "Continue onto Route 121 and watch the Team Magma movement.",
+        "Reach Lilycove for healing and supplies if you want a convenient base.",
+        "Return to Route 121’s southern water route toward Mt. Pyre."
+      ],
+      "extra": "Safari Zone exploration is optional; it is not the required trigger for the villain hideout.",
+      "next": "Mt. Pyre via Route 122"
+    },
+    {
+      "id": "or-040",
+      "title": "Mt. Pyre: reach the summit",
+      "gate": "See the eastern Hoenn Magma events",
+      "steps": [
+        "Surf along Route 122 to Mt. Pyre.",
+        "Enter the mountain and follow the route to the outside ascent.",
+        "Climb toward the summit and battle the Magma grunts.",
+        "Finish the elders’ dialogue after the summit scene."
+      ],
+      "extra": "If Lilycove’s hideout story seems stalled, complete the summit event and the later Slateport harbor event rather than searching the city repeatedly.",
+      "next": "Slateport Harbor"
+    },
+    {
+      "id": "or-041",
+      "title": "Slateport Harbor: the stolen submarine",
+      "gate": "Complete Mt. Pyre’s summit event",
+      "steps": [
+        "Fly or travel to Slateport.",
+        "Go to the harbor and finish Captain Stern’s interview scene.",
+        "Follow the event inside the harbor.",
+        "Return to Lilycove after Team Magma steals the submarine."
+      ],
+      "extra": "Omega Ruby uses Team Magma’s Lilycove hideout. Do not follow Emerald’s separate Jagged Pass hideout instructions.",
+      "next": "Lilycove City"
+    },
+    {
+      "id": "or-042",
+      "title": "Lilycove City: rival and preparations",
+      "gate": "Finish the Slateport harbor theft",
+      "steps": [
+        "Heal and restock before entering the villain base.",
+        "Complete the rival event near the department store when available.",
+        "Explore shops and city services as optional preparation.",
+        "Head to the coastal cave entrance used by Team Magma."
+      ],
+      "extra": "Optional: the Move Deleter is in Lilycove. He helps when an HM move is occupying a slot you want to change.",
+      "next": "Team Magma Hideout"
+    },
+    {
+      "id": "or-043",
+      "title": "Team Magma Hideout: teleporters",
+      "gate": "Open the Lilycove hideout story",
+      "steps": [
+        "Work through the hideout rooms and teleporter pads.",
+        "Use defeated trainers and room landmarks to avoid repeating the same loop.",
+        "Explore the optional item room before finishing the base.",
+        "Continue to the submarine confrontation and complete the administrator event."
+      ],
+      "extra": "Optional but important: the Master Ball is inside this hideout. Check side rooms instead of taking only the direct story path.",
+      "next": "Route 124"
+    },
+    {
+      "id": "or-044",
+      "title": "Route 124: sail east to Mossdeep",
+      "gate": "Clear the hideout and open the sea route",
+      "steps": [
+        "Leave Lilycove east onto Route 124.",
+        "Surf between the island rocks toward Mossdeep.",
+        "Use the Pokémon Center on arrival.",
+        "Prepare two suitable battlers for the Gym’s double battle."
+      ],
+      "extra": "Optional: explore coastal houses and underwater routes later. Dive is obtained after the next Gym event.",
+      "next": "Mossdeep Gym"
+    },
+    {
+      "id": "or-045",
+      "title": "Mossdeep Gym: Tate and Liza",
+      "gate": "Reach Mossdeep",
+      "steps": [
+        "Prepare for a double battle against Lunatone and Solrock.",
+        "Bring attacks that cover Psychic/Rock opponents and consider how spread moves affect your partner.",
+        "Navigate the Gym’s moving paths to the leaders.",
+        "Win the Mind Badge and finish the following town story."
+      ],
+      "extra": "Do not bring only one healthy battler. Planning both leads matters more than in an ordinary single battle.",
+      "next": "Steven’s house and Dive"
+    },
+    {
+      "id": "or-046",
+      "title": "Mossdeep: obtain Dive",
+      "gate": "Defeat Tate and Liza",
+      "steps": [
+        "Follow the disturbance after leaving the Gym.",
+        "Visit Steven and finish the conversation.",
+        "Receive HM07 Dive.",
+        "Teach Dive to a compatible Pokémon and restock before leaving for the southeastern sea."
+      ],
+      "extra": "The Mind Badge allows field Dive. The relevant destination is not the old GBA Space Center battle sequence.",
+      "next": "Route 128"
+    },
+    {
+      "id": "or-047",
+      "title": "Routes 127 and 128: find Seafloor Cavern",
+      "gate": "Obtain Dive and its badge permission",
+      "steps": [
+        "Surf south from Mossdeep onto Route 127.",
+        "Continue toward Route 128 and look for dark water above the cavern route.",
+        "Dive and locate the underwater cave entrance.",
+        "Surface inside Seafloor Cavern."
+      ],
+      "extra": "Dark sea patches indicate diving spots. Diving in an unrelated patch does not advance the submarine story.",
+      "next": "Seafloor Cavern"
+    },
+    {
+      "id": "or-048",
+      "title": "Seafloor Cavern: the final Magma confrontation",
+      "gate": "Reach the cavern interior",
+      "steps": [
+        "Bring Pokémon that can handle the cavern’s field obstacles.",
+        "Work through the boulder rooms and water-current paths.",
+        "Heal before the final confrontation with Maxie.",
+        "Finish the scene as Groudon is awakened."
+      ],
+      "extra": "Do not exit immediately after a battle without completing the dialogue. The weather crisis and Sootopolis sequence depend on the full event.",
+      "next": "Sootopolis City"
+    },
+    {
+      "id": "or-049",
+      "title": "Route 126: enter Sootopolis",
+      "gate": "Trigger Groudon’s awakening",
+      "steps": [
+        "Travel to the circular rock formation on Route 126.",
+        "Dive in the surrounding dark water.",
+        "Find the underwater opening through the rock wall.",
+        "Enter it and surface inside Sootopolis."
+      ],
+      "extra": "The city cannot be entered simply by Surfing over its outer rock wall. Use the underwater entrance.",
+      "next": "Cave of Origin preparations"
+    },
+    {
+      "id": "or-050",
+      "title": "Sootopolis: approach the Cave of Origin",
+      "gate": "Enter the city during the crisis",
+      "steps": [
+        "Find Steven, Wallace and the people involved in the weather event.",
+        "Finish the story conversations that grant cave access.",
+        "Heal and buy catching supplies before entering.",
+        "Save normally inside the game before the legendary encounter."
+      ],
+      "extra": "The city’s final Gym comes after resolving the crisis. Trying the Gym door first will not bypass the story.",
+      "next": "Cave of Origin"
+    },
+    {
+      "id": "or-051",
+      "title": "Cave of Origin: Groudon",
+      "gate": "Gain access during the Sootopolis crisis",
+      "steps": [
+        "Descend through the cave and follow the event’s instructions.",
+        "Use the supplied suit when the story calls for it.",
+        "Reach Groudon and complete the encounter.",
+        "Finish the post-crisis conversations before continuing to the Gym."
+      ],
+      "extra": "Primal Groudon’s harsh sunlight nullifies Water attacks. Choose another plan rather than repeatedly using a move the weather cancels.",
+      "next": "Sootopolis Gym"
+    },
+    {
+      "id": "or-052",
+      "title": "Sootopolis Gym: Wallace",
+      "gate": "Resolve the weather crisis",
+      "steps": [
+        "Prepare Electric or Grass coverage for the Water-focused team.",
+        "Follow the ice-floor puzzle carefully; revisit a room if a wrong step breaks your route.",
+        "Defeat Wallace and collect the Rain Badge.",
+        "Finish the dialogue about the League route and Waterfall."
+      ],
+      "extra": "Required for the League approach: HM05 Waterfall and permission to use it outside battle.",
+      "next": "Ever Grande City"
+    },
+    {
+      "id": "or-053",
+      "title": "Ever Grande City: the waterfall entrance",
+      "gate": "Earn all eight badges and obtain Waterfall",
+      "steps": [
+        "Travel toward Route 128 and the eastern sea route.",
+        "Find Ever Grande’s large waterfall.",
+        "Use Waterfall to reach the upper landing.",
+        "Heal at the Pokémon Center before entering Victory Road."
+      ],
+      "extra": "Bring your needed field moves and healing supplies before starting the cave.",
+      "next": "Victory Road"
+    },
+    {
+      "id": "or-054",
+      "title": "Victory Road: the League approach",
+      "gate": "Reach Ever Grande’s upper landing",
+      "steps": [
+        "Navigate the cave floors, ladders and outdoor sections.",
+        "Keep healing reserves for the important trainer encounter near the end.",
+        "Defeat Wally and finish the conversation.",
+        "Reach the Pokémon League and make your final purchases."
+      ],
+      "extra": "Optional side items can be collected on a return trip. Your immediate objective is the League exit, not every cave detour.",
+      "next": "Pokémon League"
+    },
+    {
+      "id": "or-055",
+      "title": "Pokémon League: prepare for five battles",
+      "gate": "Exit Victory Road",
+      "steps": [
+        "Review your team’s move coverage and held items.",
+        "Buy healing items, status cures and PP restoration where available.",
+        "Save normally before committing to the League run.",
+        "Prepare for Dark, Ghost, Ice and Dragon specialists before Champion Steven."
+      ],
+      "extra": "A balanced team and recovery between battles are more useful than trying to make a single attacker solve every matchup.",
+      "next": "Sidney"
+    },
+    {
+      "id": "or-056",
+      "title": "Elite Four: Sidney",
+      "gate": "Enter the League",
+      "steps": [
+        "Use Fighting, Bug or Fairy coverage where the opponent’s full typing permits it.",
+        "Check dual types before choosing a move.",
+        "Heal the team after winning.",
+        "Proceed through the League without leaving the challenge."
+      ],
+      "extra": "This page gives battle planning, not a live matchup calculation. The 3DS party and battle readers are not implemented yet.",
+      "next": "Phoebe"
+    },
+    {
+      "id": "or-057",
+      "title": "Elite Four: Phoebe",
+      "gate": "Defeat Sidney",
+      "steps": [
+        "Use suitable Ghost or Dark coverage and watch for status problems.",
+        "Avoid Normal and Fighting attacks against Ghost immunity unless a move or ability changes that interaction.",
+        "Cure status and heal after the battle.",
+        "Continue toward Glacia."
+      ],
+      "extra": "",
+      "next": "Glacia"
+    },
+    {
+      "id": "or-058",
+      "title": "Elite Four: Glacia",
+      "gate": "Defeat Phoebe",
+      "steps": [
+        "Check the opponent’s second type before assuming Fire is always the best answer.",
+        "Keep a response to Water/Ice Pokémon as well as pure Ice targets.",
+        "Manage healing and remaining move PP.",
+        "Continue after winning."
+      ],
+      "extra": "",
+      "next": "Drake"
+    },
+    {
+      "id": "or-059",
+      "title": "Elite Four: Drake",
+      "gate": "Defeat Glacia",
+      "steps": [
+        "Prepare Ice, Dragon or Fairy attacks with the relevant matchups in mind.",
+        "Remember that some Dragon opponents have secondary types that change their weaknesses.",
+        "Heal fully and restore important move PP after the win.",
+        "Save if you want a checkpoint before the Champion."
+      ],
+      "extra": "",
+      "next": "Champion Steven"
+    },
+    {
+      "id": "or-060",
+      "title": "Champion Steven",
+      "gate": "Defeat the Elite Four",
+      "steps": [
+        "Prepare coverage for Steel, Rock and Psychic combinations.",
+        "Do not rely on one attack type to handle his entire mixed team.",
+        "Keep an answer for Mega Metagross and heal when a safe turn permits it.",
+        "Win and finish the Hall of Fame and ending scenes."
+      ],
+      "extra": "The game continues after the credits. Load your save again for the Delta Episode.",
+      "next": "Delta Episode"
+    },
+    {
+      "id": "or-061",
+      "title": "Delta Episode: Littleroot and Petalburg",
+      "gate": "Become Champion and load the save again",
+      "steps": [
+        "Finish the opening home conversations and meet Zinnia.",
+        "Visit the rival’s house to learn about the stolen Key Stone.",
+        "Travel to Petalburg and help Wally against Courtney.",
+        "Answer Steven’s call and go to Rustboro."
+      ],
+      "extra": "",
+      "next": "Devon Corporation"
+    },
+    {
+      "id": "or-062",
+      "title": "Delta Episode: Devon and Granite Cave",
+      "gate": "Help Wally in Petalburg",
+      "steps": [
+        "Meet Steven and Mr. Stone at Devon Corporation.",
+        "Learn why the meteorite material is needed.",
+        "Return to Granite Cave’s mural room.",
+        "Battle Zinnia and finish the event for the Meteorite Shard."
+      ],
+      "extra": "",
+      "next": "Mossdeep Space Center"
+    },
+    {
+      "id": "or-063",
+      "title": "Delta Episode: Mossdeep and Meteor Falls",
+      "gate": "Obtain the Meteorite Shard",
+      "steps": [
+        "Bring the shard to the Mossdeep Space Center.",
+        "Finish the explanation and Zinnia’s interruption.",
+        "Travel to Meteor Falls for the next investigation.",
+        "Use the necessary cave traversal moves to reach the deeper story location."
+      ],
+      "extra": "",
+      "next": "Return to Devon"
+    },
+    {
+      "id": "or-064",
+      "title": "Delta Episode: Devon, hideout and Space Center",
+      "gate": "Complete the Meteor Falls investigation",
+      "steps": [
+        "Return to Devon and resolve the attack there.",
+        "Follow the story lead back to Team Magma’s hideout in Lilycove.",
+        "Finish Maxie’s dialogue and collect the item connected with his Key Stone.",
+        "Return to Mossdeep and resolve the Space Center confrontation."
+      ],
+      "extra": "This segment involves repeated visits. Finish each conversation and battle before following the next destination; merely visiting all three buildings is not enough.",
+      "next": "Sootopolis and Route 131"
+    },
+    {
+      "id": "or-065",
+      "title": "Delta Episode: Wallace and Sky Pillar",
+      "gate": "Resolve the Space Center confrontation",
+      "steps": [
+        "Find Wallace in Sootopolis and finish the Sky Pillar lead.",
+        "Travel to Route 131 and locate Sky Pillar.",
+        "Complete Wallace’s gatekeeping event.",
+        "Climb the tower while following Zinnia’s story."
+      ],
+      "extra": "",
+      "next": "Rayquaza and the finale"
+    },
+    {
+      "id": "or-066",
+      "title": "Delta Episode: Rayquaza and the finale",
+      "gate": "Climb Sky Pillar",
+      "steps": [
+        "Prepare catching supplies and healing before the summit.",
+        "Complete the Rayquaza encounter and the move-learning event.",
+        "Finish Zinnia’s battle and the sequence that follows.",
+        "Handle the final space encounter and complete the episode."
+      ],
+      "extra": "Keep ordinary in-game saves before important encounters. This preview has no 3DS save-state interface.",
+      "next": "Battle Resort and postgame goals"
+    },
+    {
+      "id": "or-067",
+      "title": "Battle Resort: postgame training",
+      "gate": "Complete the Delta Episode",
+      "steps": [
+        "Follow the newly available boat travel after receiving the relevant ticket.",
+        "Travel to the Battle Resort.",
+        "Explore its training and breeding services.",
+        "Treat Battle Maison streaks as a separate challenge from the main story."
+      ],
+      "extra": "Optional: build a team specifically for battle facilities rather than assuming the story team’s levels alone will carry a streak.",
+      "next": "Optional exploration"
+    },
+    {
+      "id": "or-068",
+      "title": "Optional: revisit old routes",
+      "gate": "Unlock Surf, Dive, Waterfall and convenient travel",
+      "steps": [
+        "Return to earlier water edges and blocked paths with your new field moves.",
+        "Use the appropriate bicycle for rails, slopes or cracked floors.",
+        "Check route branches you deliberately skipped during the main story.",
+        "Keep optional exploration separate from the required next-story objective."
+      ],
+      "extra": "The guide does not yet enumerate every hidden item or encounter slot. Those tables must be extracted from the player’s own ROM before claiming HERE / DEX parity.",
+      "next": "Choose a destination to explore"
+    },
+    {
+      "id": "or-069",
+      "title": "Stuck: Surf, Dive, Waterfall or a boulder",
+      "gate": "A field move refuses to work",
+      "steps": [
+        "Check that the correct HM was actually received.",
+        "Check that a compatible party member knows the move.",
+        "Check that the relevant badge permits that move outside battle.",
+        "Approach the correct obstacle or water tile and interact again."
+      ],
+      "extra": "HM01 Cut: Rustboro. HM02 Fly: Route 119. HM03 Surf: Petalburg event. HM07 Dive: Mossdeep event. This is Omega Ruby, not original Ruby’s HM numbering.",
+      "next": "Return to the relevant story chapter"
+    },
+    {
+      "id": "or-070",
+      "title": "Stuck: the rival has a type advantage",
+      "gate": "A rival battle is blocking progress",
+      "steps": [
+        "Heal at the nearest Pokémon Center.",
+        "Train and use another team member rather than only the starter.",
+        "Check the rival starter’s current secondary type after evolution.",
+        "Use status or defensive turns where helpful instead of repeatedly taking the same unfavorable exchange."
+      ],
+      "extra": "You do not need to restart because of your starter choice.",
+      "next": "Retry the rival battle"
+    }
+  ]
+}

@@ -119,3 +119,8 @@ target_link_libraries(pokedaisy
     z
     android
     log)
+
+# Experimental in-process 3DS host. The official Azahar libretro core is loaded dynamically.
+add_library(daisy3ds SHARED threeds/host.cpp)
+set_target_properties(daisy3ds PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON)
+target_link_libraries(daisy3ds android log dl EGL GLESv3 aaudio)
