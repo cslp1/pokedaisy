@@ -119,6 +119,18 @@ class Gen5DecodeTest {
     @Test fun seasonsFollowTheMonth() {
         assertEquals(listOf(0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3), (1..12).map { Black2World.season(it) })
     }
+    @Test fun guideAreaData() {
+        val all = allAreaThings(GuideId.BLACK2)
+        val things = all.values.flatten()
+        assertTrue(things.count { it.kind == AreaKind.ITEM } > 300 && things.count { it.kind == AreaKind.HIDDEN } > 150)
+        // HM01 (CUT, 420) and HM06 (DIVE, 425) are handed out; hidden items carry their 0xB04+ flags.
+        assertTrue(things.any { it.id == 420 && it.kind == AreaKind.GIFT })
+        assertTrue(things.any { it.id == 425 && it.kind == AreaKind.GIFT })
+        assertTrue(things.filter { it.kind == AreaKind.HIDDEN }.all { it.flag in 0xB04 until 0xB04 + 300 })
+        assertTrue(things.filter { it.kind == AreaKind.ITEM }.all { it.flag > 0 && it.qty >= 1 })
+        assertTrue(all.keys.all { it in 0 until 85 })
+        assertTrue(gameGuide(GuideId.BLACK2)!!.pages.any { it.title == "STUCK?" })
+    }
     @Test fun lz11RoundTrip() {
         // literal "ABCD", then a copy of 8 from 4 back: ABCDABCDABCD
         val packed = byteArrayOf(0x11, 12, 0, 0, 0x08, 'A'.code.toByte(), 'B'.code.toByte(), 'C'.code.toByte(), 'D'.code.toByte(), 0x70, 0x03)
@@ -154,6 +166,9 @@ class Gen5DecodeTest {
         assertEquals(listOf(504, 506), t.trainers[156]!!.map { it.species })
         // The rival's first battle, one team per starter the player could pick (TRAINER_RIVAL .. _3).
         assertEquals(setOf(495, 498, 501), (161..163).map { t.trainers[it]!!.single().species }.toSet())
+        // The guide's places are the Town Map's: HM01 is handed out in Virbank City.
+        val hm01 = allAreaThings(GuideId.BLACK2).entries.first { (_, l) -> l.any { it.id == 420 && it.kind == AreaKind.GIFT } }.key
+        assertEquals("Virbank City", t.map!!.sections[hm01]!!.name)
         // HERE on Route 19 (zone with wild grass): every slot a real species.
         val route19 = (0 until t.zones.size).first { t.zoneName(it) == "Route 19" && t.zones[it].encounters != 0x1FFF }
         val wild = Black2World.encounters(0, route19, null)

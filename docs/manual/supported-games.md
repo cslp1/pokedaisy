@@ -31,11 +31,11 @@ Any GBA, Game Boy or DS game plays in PokeDaisy. "Supported" is about the compan
 - Pokémon Platinum: the USA release, revision 1.
 - Pokémon HeartGold: the USA release.
 - Pokémon SoulSilver: the USA release.
-- Pokémon Black 2: the English USA / Europe release (game code `IREO`, revision 0), as a preview.
+- Pokémon Black 2: the English USA / Europe release (game code `IREO`, revision 0).
 
 The companion reads their party, bag, map, Pokédex and guide, with pictures, Pokédex pages and the map read from your cart. Platinum's and Black 2's battles show in the `BATTLE` tab; HeartGold's and SoulSilver's don't yet.
 
-Black 2's companion has your party, your bag with its five pockets and each item's description, the `BATTLE` tab with both sides and the foe's team, the Unova Town Map with your spot on it, the Pokédex with what you've seen and caught, and the guide: the wild creatures where you are for the season your device's month gives, and the next gym leader, Elite Four member or Champion. The battle buttons, `FLY`, field items and the guide's area lists aren't there for Black 2 yet. [Screens and devices](devices.md#ds-games) has how a DS game uses your screens.
+Black 2's companion has your party, your bag with its five pockets and each item's description, the `BATTLE` tab with both sides and the foe's team, the Unova Town Map with your spot on it, the Pokédex with what you've seen and caught, and the guide: the wild creatures where you are for the season your device's month gives, and the next gym leader, Elite Four member or Champion, every item, gift and trade in the area you're in, where each HM and key item is, and what to do when you're stuck. The battle buttons, `FLY` and field items aren't there for Black 2 yet. [Screens and devices](devices.md#ds-games) has how a DS game uses your screens.
 
 **ROM hacks**, each in the versions listed:
 

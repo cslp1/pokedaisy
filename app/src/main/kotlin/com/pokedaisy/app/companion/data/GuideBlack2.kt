@@ -5,6 +5,9 @@ package com.pokedaisy.app.companion.data
  * zone's wild table (a/1/2/7) for the season the DS clock's month gives, and the trainers' teams (a/0/9/1, a/0/9/2).
  * Trainer ids are pokebw2's generated/trainers.txt; the badge each leader gives is the gym scripts' TrainerCardAddBadge
  * (CHEREN 0 .. MARLON 7), and a beaten trainer's flag is 0x5F0 + its id (TrainerFlagGet). The pages are in our own words.
+ * HERE's ITEMS / PEOPLE and the WHERE IS page (generated from them: HMs, key items, gift Pokémon) are
+ * GuideAreasBlack2Gen.kt's (scripts/gen_black2_guide.py). Item ids: HM01 420 .. HM06 425, BICYCLE 450, SUPER ROD 447,
+ * DOWSING MCHN 471 (pokebw2's generated/items.txt).
  */
 object Black2World : GuideWorld {
     /** Grass and dark grass (12 slots each), surf and fishing (5 each): encounter_data.py's groups, 4 bytes a slot. */
@@ -78,6 +81,14 @@ private val BOSSES_BLACK2 = listOf(
     Boss("CHAMPION IRIS", "POKéMON LEAGUE", B2_TRAINER_FLAGS + B2_CHAMPION_IRIS) { B2_CHAMPION_IRIS },
 )
 
+private const val B2_HM01 = 420
+private const val B2_DOWSING_MCHN = 471
+private const val B2_BICYCLE = 450
+private const val B2_SUPER_ROD = 447
+
+private fun b2Hm(n: Int, move: String, block: String, hint: String) =
+    entry(block, "Use $move (HM%02d). WHERE IS says who gives it to you.".format(n), hint, Have.Item(B2_HM01 + n - 1))
+
 internal val GUIDE_BLACK2 = GameGuide(
     verified = false,
     bosses = BOSSES_BLACK2,
@@ -105,6 +116,16 @@ internal val GUIDE_BLACK2 = GameGuide(
                 ),
             ),
             section(
+                "ITEMS",
+                entry(
+                    "How do I find hidden items?",
+                    "Items lie buried all over Unova. The DOWSING MCHN beeps faster as you get close to one: HERE lists " +
+                        "every hidden item in your area, and WHERE IS says who hands the machine out.",
+                    hint = "A key item helps.",
+                    have = Have.Item(B2_DOWSING_MCHN),
+                ),
+            ),
+            section(
                 "GYMS",
                 entry(
                     "In what order are the GYMS?",
@@ -114,6 +135,27 @@ internal val GUIDE_BLACK2 = GameGuide(
                         "next one's team.",
                     hint = "Eight of them, starting at home.",
                 ),
+            ),
+        ),
+        page(
+            "STUCK?",
+            section(
+                "BLOCKED PATHS",
+                b2Hm(1, "CUT", "A small tree is in the way", "A field move."),
+                b2Hm(3, "SURF", "Water in the way", "A field move."),
+                b2Hm(4, "STRENGTH", "A big boulder blocks the path", "A field move."),
+                b2Hm(5, "WATERFALL", "A waterfall in the way", "A field move."),
+                b2Hm(6, "DIVE", "Dark, deep water", "A field move."),
+                entry("Too far to walk", "Use FLY (HM02) to go back to a town you've been to. WHERE IS says who gives it to you.",
+                    "A field move.", Have.Item(B2_HM01 + 1)),
+            ),
+            section(
+                "GETTING AROUND",
+                entry("Moving faster", "Ride the BICYCLE. WHERE IS says who gives it to you.", "A key item.", Have.Item(B2_BICYCLE)),
+                entry("Water Pokémon", "Fish with the SUPER ROD in water, or SURF across it. WHERE IS has both.", "A key item.",
+                    Have.Item(B2_SUPER_ROD)),
+                entry("Who's next?", "NEXT BOSS shows the next GYM LEADER, the ELITE FOUR or the CHAMPION and their teams. " +
+                    "The story leads you from one to the next.", "Look at NEXT BOSS."),
             ),
         ),
     ),
