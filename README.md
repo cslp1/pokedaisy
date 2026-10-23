@@ -416,4 +416,4 @@ The `omega-ruby-support` branch embeds the unmodified official Azahar 2126.2 And
 
 The **Omega Ruby guide** has 70 location/story chapters and 280 individual steps, searchable text, prerequisites, useful rewards, optional detours, directions onward and per-step manual progress. It is not checked through a complete playthrough and does not yet contain every item or encounter.
 
-This is an experimental engine integration, not confirmed full Omega Ruby companion support. Gen 6 live party, bag, battle, map, dex and story readers are not implemented. GBA and DS games continue to use their existing engines. See `docs/manual/3ds-preview.md` and `docs/DEVELOPMENT.md`.
+This is an experimental engine integration, not confirmed full Omega Ruby companion support. An opt-in experimental Gen 6 live-party preview now decodes checksum-valid memory slots. Its address and the current party count still need tablet verification. Bag, battle, map, dex and story readers are not implemented. GBA and DS games continue to use their existing engines. See `docs/manual/3ds-preview.md` and `docs/DEVELOPMENT.md`.

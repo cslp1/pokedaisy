@@ -8,11 +8,15 @@
 #include <algorithm>
 #include <cstdarg>
 #include <cstdio>
+#include <cstring>
 #include <map>
 #include <mutex>
+#include <memory>
 #include <string>
 #include <vector>
 #include "libretro.h"
+
+namespace Memory { struct PageTable; }
 
 namespace {
 void* library=nullptr;
@@ -124,3 +128,20 @@ extern "C" JNIEXPORT void JNICALL Java_com_pokedaisy_app_threeds_ThreeDsNative_s
 extern "C" JNIEXPORT jstring JNICALL Java_com_pokedaisy_app_threeds_ThreeDsNative_error(JNIEnv* env,jclass){std::lock_guard<std::mutex> lock(error_lock);return error.empty()?nullptr:env->NewStringUTF(error.c_str());}
 
 extern "C" JNIEXPORT void JNICALL Java_com_pokedaisy_app_threeds_ThreeDsNative_analog(JNIEnv*,jclass,jint x,jint y){analog_x=x;analog_y=y;}
+
+// Pinned Azahar 2126.2 ABI only. Called on the GL/emulator thread between retro_run calls.
+// No memory writes or exposed arbitrary-address API.
+extern "C" JNIEXPORT jbyteArray JNICALL Java_com_pokedaisy_app_threeds_ThreeDsNative_partySlots(JNIEnv* env,jclass){
+    if(!loaded||paused||!library)return nullptr;
+    auto* system=dlsym(library,"_ZN4Core6System10s_instanceE");
+    auto memory=reinterpret_cast<void*(*)(void*)>(dlsym(library,"_ZN4Core6System6MemoryEv"));
+    auto pointer=reinterpret_cast<const unsigned char*(*)(void*,uint32_t)>(dlsym(library,"_ZNK6Memory12MemorySystem10GetPointerEj"));
+    auto table=reinterpret_cast<std::shared_ptr<Memory::PageTable>(*)(const void*)>(dlsym(library,"_ZNK6Memory12MemorySystem19GetCurrentPageTableEv"));
+    if(!system||!memory||!pointer||!table)return nullptr;
+    void* mem=memory(system);if(!mem||!table(mem))return nullptr;
+    constexpr uint32_t address=0x08CF727C;constexpr size_t size=6*484;
+    unsigned char first[size],second[size];
+    auto copy=[&](unsigned char* dst){for(size_t off=0;off<size;){uint32_t addr=address+off;size_t count=std::min(size-off,size_t(4096-(addr&4095)));const auto* src=pointer(mem,addr);if(!src)return false;std::memcpy(dst+off,src,count);off+=count;}return true;};
+    if(!copy(first)||!copy(second)||std::memcmp(first,second,size)!=0)return nullptr;
+    auto result=env->NewByteArray(size);if(result)env->SetByteArrayRegion(result,0,size,reinterpret_cast<const jbyte*>(first));return result;
+}

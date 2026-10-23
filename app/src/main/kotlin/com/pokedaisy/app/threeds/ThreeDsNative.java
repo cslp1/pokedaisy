@@ -10,4 +10,5 @@ final class ThreeDsNative {
     static native void pause(boolean paused);
     static native void stop();
     static native String error();
+    static native byte[] partySlots();
 }
