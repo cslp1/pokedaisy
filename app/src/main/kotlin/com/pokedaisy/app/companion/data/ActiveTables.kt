@@ -26,7 +26,7 @@ package com.pokedaisy.app.companion.data
 // NativeReader.kt. Heart and Soul and Lazarus now have their own
 // ROM-extracted tables (*Hns.kt / *Lazarus.kt, scripts/gen_expansion_tables.py).
 enum class GameKind { FIRERED, EMERALD, UNBOUND, GAIA, RADICAL_RED, ODYSSEY, HEART_AND_SOUL, LAZARUS, ROWE, EMERALD_ROGUE, AMETHYST, EMERALD_SEAGLASS, CELIA, TMT2, SOULGOLD, YELLOW, GLAZED, IMPERIUM, QUETZAL, ORANGE_ISLANDS, RECHARGED_YELLOW, MARIOMON, SWORD_SHIELD, GS_CHRONICLES, CRYSTAL, CRYSTAL_CLEAR, PRISM,
-    GOLD, SILVER, RED, BLUE, ELITE_REDUX, POLISHED_CRYSTAL, PLATINUM, HEARTGOLD, SOULSILVER, BLACK2 }
+    GOLD, SILVER, RED, BLUE, ELITE_REDUX, POLISHED_CRYSTAL, PLATINUM, HEARTGOLD, SOULSILVER, BLACK2, WHITE2 }
 
 @Volatile
 var activeGame: GameKind = GameKind.FIRERED
@@ -95,7 +95,7 @@ private inline val platinum get() = activeGame == GameKind.PLATINUM
 // and icons (gen_gen4_tables.py heartgold, from pret/pokeheartgold).
 private inline val heartGold get() = activeGame.isHgss
 private inline val gen4 get() = activeGame == GameKind.PLATINUM || activeGame.isHgss
-private inline val black2 get() = activeGame == GameKind.BLACK2
+private inline val black2 get() = activeGame.isBw2
 
 /** SoulGold v1.2 runs on v1.1.4's tables (byte for byte the same) but for one TM: its
  * TM75 teaches Agility, not Swords Dance. Set with [activeGame] by the Poller. */
@@ -190,7 +190,7 @@ fun emeraldHackFor(cfg: NativeConfig?): HackText? = when {
  * FireRed-engine hack but the ones that kept FireRed's (FireRed itself carries its title-cased names). */
 val readsRomRegionMap: Boolean get() = when (activeGame) {
     // Recharged Yellow is a rebuild: FireRed 1.0's literal pools RomRegionMap follows aren't its code.
-    GameKind.YELLOW, GameKind.RED, GameKind.BLUE, GameKind.RECHARGED_YELLOW, GameKind.PLATINUM, GameKind.HEARTGOLD, GameKind.SOULSILVER, GameKind.BLACK2 -> false
+    GameKind.YELLOW, GameKind.RED, GameKind.BLUE, GameKind.RECHARGED_YELLOW, GameKind.PLATINUM, GameKind.HEARTGOLD, GameKind.SOULSILVER, GameKind.BLACK2, GameKind.WHITE2 -> false
     GameKind.FIRERED -> runningFireRedHack?.ownRegionMap == true
     else -> true
 }
@@ -616,4 +616,5 @@ fun GameKind.displayName(): String = when (this) {
     GameKind.HEARTGOLD -> "Pokémon HeartGold"
     GameKind.SOULSILVER -> "Pokémon SoulSilver"
     GameKind.BLACK2 -> "Pokémon Black 2"
+    GameKind.WHITE2 -> "Pokémon White 2"
 }

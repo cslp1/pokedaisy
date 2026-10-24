@@ -136,7 +136,7 @@ class RegionMapModel(
 
 /** The Map tab's maps for the running game - the same source [lookupLocation] names places from. */
 fun activeRegionMap(): RegionMapModel? {
-    if (activeGame == GameKind.BLACK2) return Gen5RomTables.current.map
+    if (activeGame.isBw2) return Gen5RomTables.current.map
     if (activeGame == GameKind.PLATINUM) return platinumTownMap
     if (activeGame.isHgss) return PokegearMap.model()
     val rom = if (readsRomRegionMap) RomRegionMap.current else null

@@ -137,12 +137,36 @@ class Gen5DecodeTest {
         assertEquals("ABCDABCDABCD", String(Gen5Art.lz(packed)))
     }
 
+    @Test fun sequelConfigsReadTheirOwnSavePointers() {
+        val expected = GEN5_WHITE2_US.saveControl
+        val r = object : MemoryReader {
+            override fun readCoreMemory(addr: Long, size: Int): ByteArray {
+                val out = ByteArray(size)
+                val word = when (addr) {
+                    expected -> 0x02010000L
+                    0x02010010L -> 0x02020000L
+                    0x02020034L -> 0x02200000L
+                    else -> 0L
+                }
+                if (size >= 4) put32(out, 0, word)
+                return out
+            }
+        }
+        assertEquals(0x02200000L, black2SaveBuffer(r, GEN5_WHITE2_US))
+        assertEquals(-1L, black2SaveBuffer(r, GEN5_BLACK2_US))
+        assertTrue(GameKind.WHITE2.isDsGame)
+        assertEquals(GuideId.WHITE2, guideId(GameKind.WHITE2, null))
+        assertTrue(gameGuide(GuideId.WHITE2)!!.pages.isNotEmpty())
+        assertFalse(com.pokedaisy.app.companion.data.TelemetrySampler.ndsSupported("IRDO", 1))
+        assertTrue(com.pokedaisy.app.companion.data.TelemetrySampler.ndsSupported("IRDO", 0))
+    }
+
     @Test fun englishRomTables() {
-        val path = System.getenv("BLACK2_ROM")
+        val path = System.getenv("WHITE2_ROM") ?: System.getenv("BLACK2_ROM")
         assumeTrue("Set BLACK2_ROM to test the player's local cart", path != null)
         RandomAccessFile(File(path!!), "r").use { f ->
             val header = ByteArray(512); f.readFully(header)
-            assertEquals("IREO", String(header, 12, 4, Charsets.US_ASCII))
+            assertEquals(if (System.getenv("WHITE2_ROM") != null) "IRDO" else "IREO", String(header, 12, 4, Charsets.US_ASCII))
             Gen5RomTables.load(f, header)
         }
         val t = Gen5RomTables.current
@@ -176,7 +200,7 @@ class Gen5DecodeTest {
         assertEquals(100, wild.grass.sumOf { it.percent })
     }
     @Test fun englishRomArt() {
-        val path = System.getenv("BLACK2_ROM")
+        val path = System.getenv("WHITE2_ROM") ?: System.getenv("BLACK2_ROM")
         assumeTrue("Set BLACK2_ROM to test the player's local cart", path != null)
         val dir = java.nio.file.Files.createTempDirectory("b2art").toFile()
         RandomAccessFile(File(path!!), "r").use { f ->
@@ -218,7 +242,7 @@ class Gen5DecodeTest {
     }
 
     private fun loadRom() {
-        val path = System.getenv("BLACK2_ROM") ?: return
+        val path = System.getenv("WHITE2_ROM") ?: System.getenv("BLACK2_ROM") ?: return
         RandomAccessFile(File(path), "r").use { f -> val h = ByteArray(512); f.readFully(h); Gen5RomTables.load(f, h) }
     }
 

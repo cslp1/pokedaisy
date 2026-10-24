@@ -131,3 +131,7 @@ Every request goes up in [Game requests](https://github.com/lidor30/pokedaisy/di
 When best effort finds a match for a ROM, the notice may ask **SHARE THIS MATCH?** Sharing helps a future release support that ROM properly. It's entirely up to you: nothing is sent unless you tap `SHARE`, and `NO THANKS` sends nothing.
 
 The notice lists every value it would send, and that's all of it: the ROM's SHA-1, size, game code and revision, the game it was read as and how well it fit, and the app version. No file name, no account and no device details. It goes to PokeDaisy's own database, where it can't be read back by anyone through the app or the site. If you're offline, it's sent the next time the app starts.
+
+## White 2 preview
+
+You can import the English USA / Europe White 2 cartridge (`IRDO`, revision 0). This preview has companion readers for your party, bag, battles, map and dex, plus the shared sequel guide. Live gameplay testing is still pending. The guide does not yet list White 2-specific area gifts or trades. Battle buttons and field shortcuts are not implemented for this game.

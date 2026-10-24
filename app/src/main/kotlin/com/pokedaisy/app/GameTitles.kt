@@ -41,6 +41,8 @@ object GameTitles {
         "0862ec35b24de5c7e2dcb88c9eea0873110d755c" to "Pokémon Platinum",
         "4fcded0e2713dc03929845de631d0932ea2b5a37" to "Pokémon HeartGold",
         "f8dc38ea20c17541a43b58c5e6d18c1732c7e582" to "Pokémon SoulSilver",
+        "e51e6dfb8678a3d19dcd2a10691b96a569ca0abb" to "Pokémon Black 2",
+        "b5d7490be7b415b8f1e672a53e978a9cc667e56a" to "Pokémon White 2",
         // The other Emeralds, by their own titles (No-Intro's dumps; no decomp builds them).
         "fe1558a3dcb0360ab558969e09b690888b846dd9" to "Pokémon Edición Esmeralda",
         "61c2eb2b380b1a75f0c94b767a2d4c26cd7ce4e3" to "Pokémon Smaragd-Edition",
@@ -159,7 +161,7 @@ object GameTitles {
     )
 
     /** DS carts worth hashing (128 MB each, once per file): the DS games above. */
-    private val NDS_CODES = setOf("CPUE", "IPKE", "IPGE", "IREO")
+    private val NDS_CODES = setOf("CPUE", "IPKE", "IPGE", "IREO", "IRDO")
 
     /** Only these games' ROMs (and Game Boy carts) are worth hashing: every entry above is one of them. */
     private val CODES = setOf("BPRE", "BPGE", "BPEE", "AXVE", "AXPE") + EMERALD_LOCALIZED_CODES +

@@ -234,7 +234,9 @@ fun GuideScreen(source: GuideSource, ui: GuideUiState, snapshot: SnapshotView, m
 
     Row(modifier.fillMaxSize(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         Column(Modifier.fillMaxHeight().weight(0.34f), verticalArrangement = Arrangement.spacedBy(u * 4)) {
-            OptionTitleWindow("GUIDE", m)
+            OptionTitleWindow("GUIDE", m, actions = {
+                if (source.id == GuideId.WHITE2) com.pokedaisy.app.companion.NewFeatures.badge(com.pokedaisy.app.companion.NewFeatures.WHITE2_COMPANION)?.let { OptionBadge(it, m, fill = OptionColors.newBadge) }
+            })
             OptionListWindow(m, Modifier.fillMaxWidth().weight(1f)) {
                 OptionRows(
                     pages.map { p -> Triple(p.title, null, { ui.page = p.title }) },

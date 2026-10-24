@@ -17,6 +17,11 @@ package com.pokedaisy.app.companion.data
 internal const val BLACK2_SAVE_CONTROL = 0x0209A338L
 internal const val BLACK2_GAME_SYSTEM = 0x021410F4L
 internal const val BLACK2_BATTLE_MAIN = 0x021DD87CL
+/** Addresses from pokebw2 config/{b2_us,w2_us}/arm9 and overlay 167 symbols. */
+data class Gen5Config(val saveControl: Long, val gameSystem: Long, val battleMain: Long)
+internal val GEN5_BLACK2_US = Gen5Config(BLACK2_SAVE_CONTROL, BLACK2_GAME_SYSTEM, BLACK2_BATTLE_MAIN)
+internal val GEN5_WHITE2_US = Gen5Config(0x0209A378L, 0x02141134L, 0x021DD8BCL)
+
 /** The save buffer's party count, where it sits in practice (the buffer is at 0x022055E4): the old fixed read. */
 internal const val BLACK2_PARTY_COUNT = 0x0221E3E8L
 internal const val GEN5_PARTY_MON_SIZE = 0xDC
@@ -48,8 +53,8 @@ private val EMPTY_BATTLE_MON = BattleMon(0, 0, TYPE_NONE, TYPE_NONE, 0, 0, 0, In
 fun decodeGen5PartyMon(raw: ByteArray, off: Int = 0): Mon? = decodeDsPartyMon(raw, off, gen5 = true)
 
 /** The save buffer in RAM, or -1 before the game has one (boot, title screen). */
-fun black2SaveBuffer(r: MemoryReader): Long {
-    val sc = u32(r.readCoreMemory(BLACK2_SAVE_CONTROL, 4), 0)
+fun black2SaveBuffer(r: MemoryReader, cfg: Gen5Config = GEN5_BLACK2_US): Long {
+    val sc = u32(r.readCoreMemory(cfg.saveControl, 4), 0)
     if (!inMain(sc)) return -1
     val sd = u32(r.readCoreMemory(sc + 0x10, 4), 0)
     if (!inMain(sd)) return -1
@@ -168,8 +173,8 @@ internal class Gen5BattleRead(
 )
 
 /** Null outside battle (the overlay's word then holds whatever loaded there; the self-check rejects it). */
-internal fun readGen5Battle(r: MemoryReader): Gen5BattleRead? {
-    val mm = u32(r.readCoreMemory(BLACK2_BATTLE_MAIN, 4), 0)
+internal fun readGen5Battle(r: MemoryReader, cfg: Gen5Config = GEN5_BLACK2_US): Gen5BattleRead? {
+    val mm = u32(r.readCoreMemory(cfg.battleMain, 4), 0)
     if (!inMain(mm)) return null
     val head = r.readCoreMemory(mm, 0xC8 + 4 + 4 * 0x1C)
     if (head.size < 0xC8 + 4 + 4 * 0x1C || u32(head, 0xC8) != mm) return null
@@ -206,16 +211,17 @@ internal fun readGen5Battle(r: MemoryReader): Gen5BattleRead? {
     return Gen5BattleRead(mons, foes, trainer = battleType != 0L, doubles = doubles)
 }
 
-fun readGen5Telemetry(r: MemoryReader): Telemetry {
-    val save = black2SaveBuffer(r)
-    val party = readGen5Party(r, if (save >= 0) save + B2_PARTY + 4 else BLACK2_PARTY_COUNT)
+fun readGen5Telemetry(r: MemoryReader, cfg: Gen5Config = GEN5_BLACK2_US): Telemetry {
+    val save = black2SaveBuffer(r, cfg)
+    val party = if (save >= 0) readGen5Party(r, save + B2_PARTY + 4)
+        else if (cfg == GEN5_BLACK2_US) readGen5Party(r, BLACK2_PARTY_COUNT) else emptyList()
     if (save < 0) return emptyGen5Telemetry(party)
     val items = readGen5Bag(r, save)
     val info = r.readCoreMemory(save + B2_GAME_INFO, 8)
     // The save's trainer block (PKHeX MyStatus5): name at 4, TID 0x14, language 0x1E, version 0x1F, gender 0x21.
     val player = r.readCoreMemory(save + B2_PLAYER, 0x24)
     // Where the player is: the live PlayerState, else the save's own position block.
-    val gs = u32(r.readCoreMemory(BLACK2_GAME_SYSTEM, 4), 0)
+    val gs = u32(r.readCoreMemory(cfg.gameSystem, 4), 0)
     val gd = if (inMain(gs)) u32(r.readCoreMemory(gs + 0x1C, 4), 0) else 0L
     val pos = if (inMain(gd)) r.readCoreMemory(gd + 0x114, 0x10) else r.readCoreMemory(save + 0x19500 + 4, 0x10)
     val zone = u16(pos, 0)
@@ -223,7 +229,7 @@ fun readGen5Telemetry(r: MemoryReader): Telemetry {
     val z = (u32(pos, 12) shr 16).toInt()
     val tables = Gen5RomTables.current
     val spot = Gen5RomTables.townMapSpot(zone)
-    val battle = readGen5Battle(r)
+    val battle = readGen5Battle(r, cfg)
     val foePid = battle?.let { b -> b.foes.firstOrNull { it.species == b.mons[BATTLE_POS_OPPONENT_LEFT].species && it.hp == b.mons[BATTLE_POS_OPPONENT_LEFT].hp } }
     return Telemetry(
         frameCounter = 0,

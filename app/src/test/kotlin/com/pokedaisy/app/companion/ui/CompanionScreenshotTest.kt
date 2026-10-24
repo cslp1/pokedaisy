@@ -629,6 +629,18 @@ open class CompanionScreenshotTest {
      * Emerald's GUIDE on NEXT BOSS, live: the retail ROM's trainer tables and the
      * emerald_vanilla save fixture (six badges -> TATE AND LIZA).
      */
+    @Test fun white2GuidePreview() {
+        val before = activeGame
+        try {
+            activeGame = GameKind.WHITE2
+            val blank = object : com.pokedaisy.app.companion.data.MemoryReader {
+                override fun readCoreMemory(addr: Long, size: Int) = ByteArray(size)
+            }
+            val snapshot = com.pokedaisy.app.companion.data.buildSnapshotView(com.pokedaisy.app.companion.data.readGen5Telemetry(blank, com.pokedaisy.app.companion.data.GEN5_WHITE2_US))
+            paparazzi.snapshot { AppTheme { GuideScreen(rememberGuide(GameKind.WHITE2, null, null)!!, GuideUiState().apply { page = "STUCK?" }, snapshot) } }
+        } finally { activeGame = before }
+    }
+
     @Test
     fun guideEmerald() {
         emeraldDex() ?: return

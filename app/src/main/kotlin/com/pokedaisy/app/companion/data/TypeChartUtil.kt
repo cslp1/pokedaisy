@@ -133,7 +133,7 @@ fun gameCase(name: String): String = when {
  * ROM (RomItemText; the games' text isn't bundled), "" without one.
  */
 fun itemDescription(id: Int): String = when (activeGame) {
-    GameKind.BLACK2 -> Gen5RomTables.current.itemDescriptions[id].orEmpty()
+    GameKind.BLACK2, GameKind.WHITE2 -> Gen5RomTables.current.itemDescriptions[id].orEmpty()
     // Gen 1 items have no descriptions of their own: ours, and what each TM / HM teaches.
     // ... in English: the German / French / Italian / Spanish carts get none rather than English under their names.
     // Red and Blue have Yellow's items (gen_gen1_tables.py checks it): its text fits them.

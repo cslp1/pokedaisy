@@ -65,6 +65,7 @@ private fun rawAreas(guide: GuideId): List<String> = when (guide) {
     GuideId.MARIOMON, GuideId.RECHARGED_EMERALD, GuideId.ELITE_REDUX -> emptyList()
     // Black 2: item balls, hidden items, gifts and trades by Town Map place (scripts/gen_black2_guide.py).
     GuideId.BLACK2 -> B2_AREAS_RAW
+    GuideId.WHITE2 -> emptyList() // Version-specific area gifts/trades not verified yet.
     // The DS games: item balls and hidden items (scripts/gen_gen4_guide.py), keyed by place - see [areaSection].
     GuideId.PLATINUM -> PT_AREAS_RAW
     GuideId.HEARTGOLD, GuideId.SOULSILVER -> HG_AREAS_RAW

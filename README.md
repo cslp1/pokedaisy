@@ -273,7 +273,7 @@ ROM hacks are excluded. This list describes companion support, not emulator comp
 
 ✅ Works · ◐ Partial · — Not implemented
 
-Planned entries track the remaining official Gen 1–5 games. Their companion support has not been implemented or verified yet.
+Planned entries track the remaining official Gen 1–5 games. Their companion support has not been implemented or verified yet. White 2 preview has readers implemented with its own RAM addresses and cart data; live gameplay verification is pending. Its guide shares the sequel walkthrough, encounter tables and bosses, but version-specific area gifts and trades are not enabled.
 
 | Game                           | Version                    | Party | Bag | Battle | Map |   Dex   | Guide |
 | ------------------------------ | -------------------------- | :---: | :-: | :----: | :-: | :-----: | :---: |
@@ -300,7 +300,7 @@ Planned entries track the remaining official Gen 1–5 games. Their companion su
 | Black (DS, planned)            | Pending verification       |   —   |  —  |   —    |  —  |    —    |   —   |
 | White (DS, planned)            | Pending verification       |   —   |  —  |   —    |  —  |    —    |   —   |
 | Black 2 (DS)                   | USA/Europe (IREO rev 0)    |  ✅   | ✅  |   ◐    | ✅  |   ✅    |  ✅   |
-| White 2 (DS, planned)          | Pending verification       |   —   |  —  |   —    |  —  |    —    |   —   |
+| White 2 (DS, preview)          | USA/Europe (IRDO rev 0)     |   ◐   |  ◐  |   ◐    |  ◐  |    ◐    |   ◐   |
 
 <details>
 <summary><strong>Notes on the table</strong></summary>

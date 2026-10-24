@@ -58,7 +58,7 @@ object NdsArt {
         val rev = header[0x1E].toInt() and 0xFF
         val platinum = code == "CPUE" && rev == 1
         val heartGold = (code == "IPKE" || code == "IPGE") && rev == 0
-        if (code == "IREO" && rev == 0) {
+        if (code in setOf("IREO", "IRDO") && rev == 0) {
             Gen5RomTables.load(f, header)
             Gen5Art.extract(f, header, dir)
             return true

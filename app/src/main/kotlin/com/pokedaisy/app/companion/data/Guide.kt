@@ -144,7 +144,7 @@ enum class GuideId {
     // The DS games: HeartGold and SoulSilver share their text, not their wild Pokémon.
     PLATINUM, HEARTGOLD, SOULSILVER,
     // Black 2 (Gen 5): HERE and NEXT BOSS from the player's cart (Black2World).
-    BLACK2,
+    BLACK2, WHITE2,
 }
 
 /** [live]'s guide; else by [game] (a config whose tables didn't check out has no live tables). */
@@ -158,6 +158,7 @@ fun guideId(game: GameKind?, live: GuideTables?): GuideId? = live?.guide ?: when
     GameKind.HEARTGOLD -> GuideId.HEARTGOLD
     GameKind.SOULSILVER -> GuideId.SOULSILVER
     GameKind.BLACK2 -> GuideId.BLACK2
+    GameKind.WHITE2 -> GuideId.WHITE2
     else -> null
 }
 
@@ -200,7 +201,7 @@ fun gameGuide(id: GuideId?): GameGuide? = when (id) {
     GuideId.PLATINUM -> GUIDE_PLATINUM
     GuideId.HEARTGOLD -> GUIDE_HEARTGOLD
     GuideId.SOULSILVER -> GUIDE_SOULSILVER
-    GuideId.BLACK2 -> GUIDE_BLACK2
+    GuideId.BLACK2, GuideId.WHITE2 -> GUIDE_BLACK2
     null -> null
 }
 

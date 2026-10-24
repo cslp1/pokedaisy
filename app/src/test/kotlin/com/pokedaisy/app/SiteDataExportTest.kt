@@ -34,7 +34,7 @@ class SiteDataExportTest {
     )
 
     /** The DS carts' titles by game code ([TelemetrySampler.NDS_GAMES]). */
-    private val dsTitles = mapOf("CPUE" to "Pokémon Platinum", "IPKE" to "Pokémon HeartGold", "IPGE" to "Pokémon SoulSilver")
+    private val dsTitles = mapOf("CPUE" to "Pokémon Platinum", "IPKE" to "Pokémon HeartGold", "IPGE" to "Pokémon SoulSilver", "IREO" to "Pokémon Black 2", "IRDO" to "Pokémon White 2")
 
     /** The base game of each hack that has a game code of its own ([TelemetrySampler.HACK_GAME_CODES]). */
     private val hackCodeBases = mapOf(TelemetrySampler.ULTRA_VIOLET_CODE to "BPRE")
@@ -62,7 +62,7 @@ class SiteDataExportTest {
      * game, version and cells (`yes` ✅ / `part` ◐ / `no` —). */
     private fun readmeMatrix(): Pair<List<String>, List<List<String>>> {
         val lines = File(root, "README.md").readLines()
-        val from = lines.indexOfFirst { it.trim() == "## Supported games" }
+        val from = lines.indexOfFirst { it.trim() in setOf("## Supported games", "# Supported official games") }
         val table = lines.drop(from + 1).takeWhile { !it.startsWith("## ") }
             .filter { it.trimStart().startsWith("|") }
             .map { row -> row.trim().removePrefix("|").removeSuffix("|").split("|").map { it.trim() } }

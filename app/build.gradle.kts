@@ -61,8 +61,8 @@ android {
         targetSdk = 34
         // Bump both for every GitHub release: the updater compares versionName
         // against the release tag (v<versionName>), Android needs versionCode to grow.
-        versionCode = 13
-        versionName = "1.3.0"
+        versionCode = 15
+        versionName = "1.3.2"
         // Whether this build can send crash reports at all (CrashReports.available).
         buildConfigField("boolean", "CRASHLYTICS", crashlytics.toString())
         buildConfigField("String", "SCREENSCRAPER_DEV_ID", "\"${screenScraperSecret("screenscraper.devId", "SCREENSCRAPER_DEV_ID")}\"")

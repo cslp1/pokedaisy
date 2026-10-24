@@ -295,7 +295,7 @@ val GEN4_HEARTGOLD_US = gen4HeartGoldFamily(saveDataPtr = HEARTGOLD_SAVE_DATA_PT
 val GEN4_SOULSILVER_US = gen4HeartGoldFamily(saveDataPtr = HEARTGOLD_SAVE_DATA_PTR)
 
 /** A DS game ([readGen4Telemetry]): two screens, its own look and tables. */
-val GameKind?.isDsGame: Boolean get() = this == GameKind.PLATINUM || isHgss || this == GameKind.BLACK2
+val GameKind?.isDsGame: Boolean get() = this == GameKind.PLATINUM || isHgss || isBw2
 
 /** The Gen 4 config for [kind], or null. */
 fun gen4ConfigFor(kind: GameKind?): Gen4Config? = when (kind) {
@@ -646,3 +646,6 @@ private fun emptyTelemetry() = Telemetry(
     x = 0, y = 0, facingDirection = 0, partyCount = 0, party = emptyList(), battleMons = List(4) { EMPTY_BATTLE_MON },
     itemCount = 0, items = emptyList(),
 )
+
+/** The English sequels share their data layout, with separate RAM configs. */
+val GameKind?.isBw2: Boolean get() = this == GameKind.BLACK2 || this == GameKind.WHITE2

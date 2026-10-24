@@ -1969,3 +1969,7 @@ BLACK2_ROM=/path/to/cart.nds BLACK2_CAPTURES=/path/to/captures ./gradlew -p ui-p
 
 `BLACK2_CAPTURES` holds `cap_starter/`, `cap_b2/`, `cap_b3/` (nds_dump `dump` directories). Debug APKs use
 `com.pokedaisy.app.black2`, labelled PokeDaisy Black 2, beside the original app.
+
+### White 2 companion preview
+
+English IRDO rev 0 uses a separate Gen5Config: sSaveControl 0x0209A378, g_GameSystem 0x02141134 and overlay 167 battle module word 0x021DD8BC. These are from fuddlesworth/pokebw2 config/w2_us/arm9/symbols.txt and overlays/ov167/symbols.txt. Shared save block structures are read through the resolved buffer, without Black 2 fixed-address party fallback. Tables, pictures, encounters, dex pages and trainer parties are extracted from the selected cart. White 2 shares the sequel guide text and boss IDs, but its version-specific area lists are disabled until verified. No player saves are needed for ROM-data checks: set WHITE2_ROM to a local cartridge file and run Gen5DecodeTest. Synthetic pointer tests check the separate configs; physical gameplay verification remains pending.
